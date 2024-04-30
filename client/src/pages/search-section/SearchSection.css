@@ -1,0 +1,24 @@
+/* .searchSection {
+  
+ display: flex;
+ flex-direction: column;
+  } 
+/* 
+  .searchbutt {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: auto;
+  } 
+.img{
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  z-index: -1;
+}
+  .searchbutt{
+    border: 1px solid black;
+    padding: 20px;
+    text-decoration: none;
+    color: black;
+    background-color: aquamarine;
+  } */
