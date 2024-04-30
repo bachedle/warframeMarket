@@ -17,3 +17,44 @@
     backface-visibility: hidden;
     position: relative;
 }
+
+.weaponImage {
+    background-color: crimson;
+    background-image: url('D:/javaworkspace/warframe_market/client/src/assets/weaponimage.jpg');
+    background-position: center;
+    background-size:100%;
+    filter: brightness(100%);
+    background-repeat: no-repeat;
+    height: 450px;
+    margin: 20px;
+    display: flex;
+    /* padding: 200px 0; */
+    justify-content: center;
+    text-align:center;
+    /* gap: 200px; */
+    transform: translate3d(3.2px,-8px,0px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    position: relative;
+}
+
+.modImage {
+    background-color: crimson;
+    background-image: url('D:/javaworkspace/warframe_market/client/src/assets/modimage.png');
+    background-position: top;
+    background-size:100%;
+    filter: brightness(100%);
+    background-repeat: no-repeat;
+    height: 450px;
+    margin: 20px;
+    display: flex;
+    /* padding: 200px 0; */
+    justify-content: center;
+    text-align:center;
+    /* gap: 200px; */
+    transform: translate3d(3.2px,-8px,0px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    position: relative;
+}
+

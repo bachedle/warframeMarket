@@ -1,0 +1,20 @@
+.orderContainer {
+    background-color: crimson;
+    background-image: url('D:/javaworkspace/warframe_market/client/src/assets/barokiteer.png');
+    background-position: center;
+    background-size:90%;
+    filter: brightness(100%);
+    background-repeat: no-repeat;
+    height: 800px;
+    margin: 20px;
+    display: flex;
+    /* padding: 200px 0; */
+    justify-content: center;
+    text-align:center;
+    /* gap: 200px; */
+    transform: translate3d(3.2px,-8px,0px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    position: relative;
+}
+

@@ -43,7 +43,7 @@ function HomePage() {
                 </div>
                 
                 <div className='searchCategory'>
-                    <Link to="/Search" className='searchbutt'>
+                    <Link to="/PlaceOrder" className='searchbutt'>
                         <img src={midenlacdit} className='img'></img>
                         search
                     </Link>
