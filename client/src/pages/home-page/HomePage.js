@@ -62,9 +62,6 @@ function HomePage() {
                         <br></br>
                     </div>
                 ))}
-                
-                
-                
             </div>
         </div>
   )
