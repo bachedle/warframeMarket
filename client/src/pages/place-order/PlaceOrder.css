@@ -1,6 +1,6 @@
 .orderContainer {
     background-color: crimson;
-    background-image: url('D:/javaworkspace/warframe_market/client/src/assets/barokiteer.png');
+    background-image: url('../../assets/barokiteer.png');
     background-position: center;
     background-size:90%;
     filter: brightness(100%);

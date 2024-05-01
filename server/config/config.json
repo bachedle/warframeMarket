@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "alanwalkerjoin12",
-    "database": "tutorialdb",
+    "password": "1232003",
+    "database": "warframemarket",
     "host": "localhost",
     "dialect": "mysql"
   },
