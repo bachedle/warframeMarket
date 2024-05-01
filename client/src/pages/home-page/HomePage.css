@@ -60,7 +60,7 @@ display: flex;
 } */
 .homeContainer {
     background-color: red;
-    background-image: url('D:/javaworkspace/warframe_market/client/src/assets/homebackground1.png');
+    background-image: url('../../assets/homebackground1.png');
     background-position: top;
     background-size:100%;
     filter: brightness(100%);
