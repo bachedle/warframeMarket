@@ -39,7 +39,6 @@ function HomePage() {
             Weapons
           </Link>
         </div>
-
         <div className="searchCategory">
           <Link to="/Mod" className="searchbutt">
             <img src={modImg} className="img"></img>

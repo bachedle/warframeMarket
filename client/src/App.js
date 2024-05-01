@@ -16,7 +16,7 @@ function App() {
             <NavBar></NavBar>
           </div>
           <Routes>
-            <Route path = "/" exact element={<HomePage/>}></Route>
+            <Route path ="/" exact element={<HomePage/>}></Route>
             <Route path ="/Warframe" exact element={<WarframePage/>}></Route>
             <Route path ="/Weapons" exact element={<WeaponPage/>}></Route>
             <Route path ="/Mod" exact element={<ModPage/>}></Route>
