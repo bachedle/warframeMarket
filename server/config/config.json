@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "giahung1232003",
-    "database": "testdb",
+    "database": "warframemarket",
     "host": "localhost",
     "dialect": "mysql"
   },

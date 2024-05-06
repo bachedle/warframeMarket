@@ -7,6 +7,7 @@ import Footer from './pages/footer/Footer'
 import WarframePage from './pages/component/WarframePage';
 import WeaponPage from './pages/component/WeaponPage';
 import ModPage from './pages/component/ModPage';
+import ProductDetail from './pages/DetailProduct/ProductDetail';
 import PlaceOrder from './pages/place-order/PlaceOrder';
 function App() {
   return (
@@ -16,10 +17,11 @@ function App() {
             <NavBar></NavBar>
           </div>
           <Routes>
-            <Route path = "/" exact element={<HomePage/>}></Route>
+            <Route path ="/" exact element={<HomePage/>}></Route>
             <Route path ="/Warframe" exact element={<WarframePage/>}></Route>
             <Route path ="/Weapons" exact element={<WeaponPage/>}></Route>
             <Route path ="/Mod" exact element={<ModPage/>}></Route>
+            <Route path ="/:name" exact element={<ProductDetail/>}></Route>
             <Route path ="/PlaceOrder" exact element={<PlaceOrder/>}></Route>
           </Routes>
           <div>
