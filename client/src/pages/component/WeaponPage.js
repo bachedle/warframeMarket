@@ -5,7 +5,7 @@ import axios from 'axios'
 function WeaponPage() {
   const [postObject, setPostObject] = useState([])
     useEffect(()=>{
-        axios.get(`http://localhost:2001/posts`).then((response) => {
+        axios.get(`http://localhost:2001/products/Weapon`).then((response) => {
             setPostObject(response.data)
         });
     }, [/*id*/])
@@ -14,17 +14,28 @@ function WeaponPage() {
     <div className="subPage">
       <div className='weaponImage'></div>
       <div className='productList'>
-        {postObject.map((value,key)=> (
+      {postObject.map((value, key) => (
           <div className="productCapsule">
-              <div className="title">{value.title}</div>
-              <div className="postText">{value.postText}</div>
-              <div className="username">{value.username}</div>
-              {/* <div className="title">title</div>
-              <div className="postText">quantity</div>
-              <div className="username">price</div> */}
-              <br></br>
+            <div className="name"> {value.Name}</div>
+            <div className="type"> {value.Type}</div>
+            {value.ModRank !== null && (
+              <div className="modrank"> Mod Rank: {value.ModRank}</div>
+            )}
+            {value.Rarity && (
+              <div className="rarity"> Rarity: {value.Rarity}</div>
+            )}
+            {value.Duncat && (
+              <div className="duncat"> Duncat: {value.Duncat}</div>
+            )}
+            {value.MasteryRank && (
+              <div className="masteryrank">
+                {" "}
+                Mastery Rank: {value.MasteryRank}
+              </div>
+            )}
+            <div className="tax"> Tax: {value.Tax}</div>
           </div>
-            ))}
+        ))}
       </div>
     </div>
   )
