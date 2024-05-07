@@ -59,7 +59,7 @@ router.get("/Warframe", async (req, res) => {
 
 router.get("/:name", async (req, res) => {
   try {
-      const products = await Products.findAll({ 
+      const products = await Products.findOne({ 
         where: { Name: req.params.name },
       });
       if (!products) {

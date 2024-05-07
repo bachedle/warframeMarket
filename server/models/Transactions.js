@@ -20,7 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-  });
+  },
+  {
+    timestamps: false,
+  }
+);
 
   // Define association with the Products model to establish foreign key constraint
   Transactions.associate = (models) => {
