@@ -10,8 +10,11 @@ app.use(cors());
 const db = require(`./models`);
 
 //routers
-const postRouter = require("./routes/Products");
-app.use("/products", postRouter);
+const productRouter = require("./routes/Products");
+app.use("/products", productRouter);
+
+const transactionRouter = require("./routes/Transactions");
+app.use("/transactions", transactionRouter);
 
 db.sequelize.sync().then(() => {
   app.listen(2001, () => {

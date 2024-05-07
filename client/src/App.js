@@ -21,7 +21,7 @@ function App() {
             <Route path ="/Warframe" exact element={<WarframePage/>}></Route>
             <Route path ="/Weapons" exact element={<WeaponPage/>}></Route>
             <Route path ="/Mod" exact element={<ModPage/>}></Route>
-            <Route path ="/:name" exact element={<ProductDetail/>}></Route>
+            <Route path ="/:Name" exact element={<ProductDetail/>}></Route>
             <Route path ="/PlaceOrder" exact element={<PlaceOrder/>}></Route>
           </Routes>
           <div>
