@@ -7,6 +7,7 @@ import Footer from './pages/footer/Footer'
 import WarframePage from './pages/component/WarframePage';
 import WeaponPage from './pages/component/WeaponPage';
 import ModPage from './pages/component/ModPage';
+import ProductDetail from './pages/DetailProduct/ProductDetail';
 import PlaceOrder from './pages/place-order/PlaceOrder';
 import User from './pages/account/user/User';
 import Register from './pages/account/register/Register';
@@ -22,6 +23,7 @@ function App() {
             <Route path ="/Warframe" exact element={<WarframePage/>}></Route>
             <Route path ="/Weapons" exact element={<WeaponPage/>}></Route>
             <Route path ="/Mod" exact element={<ModPage/>}></Route>
+            <Route path ="/:Name" exact element={<ProductDetail/>}></Route>
             <Route path ="/PlaceOrder" exact element={<PlaceOrder/>}></Route>
 
             <Route path ="/Users" exact element={<User/>}></Route>

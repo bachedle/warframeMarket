@@ -12,11 +12,11 @@ import midenlacdit from "../../assets/platinum.webp";
 
 function HomePage() {
   // let { id } = useParams();
-  const [postObject, setPostObject] = useState([]);
+  const [listOfProducts, setListOfProducts] = useState([]);
   useEffect(
     () => {
       axios.get(`http://localhost:2001/products`).then((response) => {
-        setPostObject(response.data);
+        setListOfProducts(response.data);
       });
     },
     [
@@ -55,26 +55,48 @@ function HomePage() {
       </div>
 
       <div className="productList">
-        {postObject.map((value, key) => (
-          <div className="productCapsule">
-            <div className="name"> {value.Name}</div>
-            <div className="type"> {value.Type}</div>
-            {value.ModRank !== null && (
-              <div className="modrank"> Mod Rank: {value.ModRank}</div>
-            )}
-            {value.Rarity && (
-              <div className="rarity"> Rarity: {value.Rarity}</div>
-            )}
-            {value.Duncat && (
-              <div className="duncat"> Duncat: {value.Duncat}</div>
-            )}
-            {value.MasteryRank && (
-              <div className="masteryrank">
-                {" "}
-                Mastery Rank: {value.MasteryRank}
+      {listOfProducts.map((value, key) => (
+          <div className="product-card" key={key}>
+            <Link to={`/${value.Name}`} className="Product-card-link">
+              <div className="product-image-container">
+                {/* <img className="product-image" src={getImageUrl(value.Name)} alt="Product" /> */}
               </div>
-            )}
-            <div className="tax"> Tax: {value.Tax}</div>
+              <div className="product-details">
+                <div className="product-name">{value.Name}</div>
+                <div className="info">
+                  <div className="info-item">
+                    {/* <img className="nutrition-icon" src={caloriesIcon} alt="Calories" /> */}
+                    {value.ModRank !== null && (
+                      <div className="modrank"> Mod Rank: {value.ModRank}</div>
+                    )}
+                  </div>
+                  <div className="info-item">
+                    {/* <img className="nutrition-icon" src={proteinIcon} alt="Protein" /> */}
+                    {value.Rarity && (
+                      <div className="rarity"> Rarity: {value.Rarity}</div>
+                    )}
+                  </div>
+                  <div className="info-item">
+                    {/* <img className="nutrition-icon" src={carbIcon} alt="Carb" /> */}
+                    {value.Duncat && (
+                      <div className="duncat"> Duncat: {value.Duncat}</div>
+                    )}
+                  </div>
+                  <div className="info-item">
+                    {/* <img className="nutrition-icon" src={fatIcon} alt="Fat" /> */}
+                    {value.MasteryRank && (
+                      <div className="masteryrank">
+                        {" "}
+                        Mastery Rank: {value.MasteryRank}
+                      </div>
+                    )}
+                  </div>
+                  <div className="info-item">
+                    Tax: {value.Tax}
+                  </div>
+                </div>
+              </div>
+            </Link>
           </div>
         ))}
       </div>

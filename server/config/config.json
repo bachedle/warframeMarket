@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "alanwalkerjoin12",
+=======
+    "password": "giahung1232003",
+>>>>>>> f372aaaf12264ad914e251934e0fa43c806f2056
     "database": "warframemarket",
     "host": "localhost",
     "dialect": "mysql"
