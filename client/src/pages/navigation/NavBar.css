@@ -52,3 +52,20 @@
     float:left;
   } 
 
+  .navButton {
+    background-color: rgb(175, 243, 175);
+    float: inline-end;
+    /* position: center; */
+   /* flex; */
+    fontcolor: black;
+    font-family: fantasy;
+    gap: 60px;
+    font-size:25px;
+    font-weight: 1000;
+    margin-top: 5px;
+    display: flex;
+    flex-direction:row;
+
+
+  }
+

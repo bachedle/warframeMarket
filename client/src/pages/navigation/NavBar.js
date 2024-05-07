@@ -19,8 +19,26 @@ function NavBar() {
               </div>
             </Link> 
             {/* <Link to="/CreatePost">create post</Link> */}
-          </div>          
+          </div>    
+          <div className="navButton">
+            <Link to="/Warframe">
+              Warframe 
+            </Link> 
+            <Link to="/Weapons">
+              Weapons 
+            </Link>
+            <Link to="/Mod">
+              Mods 
+            </Link>
+          </div>  
+          <div className="accountButton">
+            <Link to="/Users">
+              User 
+            </Link> 
+            
+          </div>  
         </nav>
+        
 
           {/* <Route path = "/" exact element={<Home/>}></Route>
           <Route path = "/CreatePost" exact element={<CreatePost/>}></Route>
