@@ -16,6 +16,9 @@ app.use("/products", productRouter);
 const transactionRouter = require("./routes/Transactions");
 app.use("/transactions", transactionRouter);
 
+const userRouter = require("./routes/Users");
+app.use("/auth", userRouter);
+
 db.sequelize.sync().then(() => {
   app.listen(2001, () => {
     //api call
