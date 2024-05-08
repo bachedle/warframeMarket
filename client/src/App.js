@@ -10,18 +10,18 @@ import ModPage from './pages/component/ModPage';
 import PlaceOrder from './pages/place-order/PlaceOrder';
 import User from './pages/account/user/User';
 import Login from './pages/account/login/Login';
-import Createtransaction from './pages/create-transaction/Createtransaction';
+// import Createtransaction from './pages/create-transaction/SellTrans';
 import ProductDetail from './pages/DetailProduct/ProductDetail';
-
+import FloatingButton from './pages/create-transaction/FloatingButton';
+import SellTrans from './pages/create-transaction/SellTrans';
 function App() {
   return (
     <div className='App'>
       <Router>
           <div>
-            <Createtransaction></Createtransaction>
-          </div>
-          <div>
             <NavBar></NavBar>
+            <FloatingButton></FloatingButton>
+
           </div>
           <Routes>
             <Route path ="/" exact element={<HomePage/>}></Route>

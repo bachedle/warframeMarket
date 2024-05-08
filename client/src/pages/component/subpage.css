@@ -14,8 +14,10 @@
     /* gap: 200px; */
     transform: translate3d(3.2px,-8px,0px);
     transform-style: preserve-3d;
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     position: relative;
+    /* z-index: -10000; */
+
 }
 
 .weaponImage {
@@ -34,8 +36,10 @@
     /* gap: 200px; */
     transform: translate3d(3.2px,-8px,0px);
     transform-style: preserve-3d;
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     position: relative;
+    /* z-index: -10000; */
+
 }
 
 .modImage {
@@ -54,7 +58,8 @@
     /* gap: 200px; */
     transform: translate3d(3.2px,-8px,0px);
     transform-style: preserve-3d;
-    backface-visibility: hidden;
+    /* backface-visibility: hidden; */
     position: relative;
+    /* z-index: -10000; */
 }
 
