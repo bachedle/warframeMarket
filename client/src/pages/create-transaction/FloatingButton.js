@@ -8,15 +8,13 @@ function FloatingButton() {
         +
       </div>
       <div className="element-container">
-        
-        <span className='float-element'>
-            <i className='material-icon'>Buy
-            </i>
-        </span>
-        <span className='float-element'>
+        <a href='/Buy' className='float-element'>
+            <i className='material-icon'>Buy</i>
+        </a>
+        <a href='Sell' className='float-element'>
             <i className='material-icon'>Sell
             </i>
-        </span>
+        </a>
       </div>
     </div>
   )

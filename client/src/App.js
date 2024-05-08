@@ -21,7 +21,6 @@ function App() {
           <div>
             <NavBar></NavBar>
             <FloatingButton></FloatingButton>
-
           </div>
           <Routes>
             <Route path ="/" exact element={<HomePage/>}></Route>
