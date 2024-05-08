@@ -32,9 +32,13 @@ function NavBar() {
             </Link>
           </div>  
           <div className="accountButton">
-            <Link to="/Users">
+            {/* <Link to="/Users">
               User 
-            </Link> 
+            </Link> */}
+            <div className='loginBtn'>
+              <a href='Login'>Login</a>
+              
+            </div> 
             
           </div>  
         </nav>

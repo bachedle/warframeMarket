@@ -1,6 +1,6 @@
-.footer {
-    position:sticky;
-    height: 200px;
+.footerContainer {
+    position:static;
+    height: 100px;
     left: 0;
     bottom: 0;
     width: 100%;
