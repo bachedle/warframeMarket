@@ -30,8 +30,7 @@ function App() {
             <Route path ="/PlaceOrder" exact element={<PlaceOrder/>}></Route>
 
             <Route path ="/Users" exact element={<User/>}></Route>
-            <Route path ="Login" exact element={<Login/>}></Route>
-
+            <Route path ="/Login" exact element={<Login/>}></Route>
           </Routes>
           <div>
             <Footer></Footer>
