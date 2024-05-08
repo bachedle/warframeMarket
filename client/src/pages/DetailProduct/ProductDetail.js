@@ -14,14 +14,14 @@ function ProductDetail() {
       setProduct(response.data);
     });
   }, [Name]);
-  console.log(product.id);
+  console.log(product);
   useEffect(() => {
-    if (product.id) {
-      axios.get(`http://localhost:2001/transactions/${product.id}`).then((response) => {
+    if (product.ID) {
+      axios.get(`http://localhost:2001/transactions/Sell/${product.ID}`).then((response) => {
         setTransaction(response.data);
       });
     }
-  }, [product.id]);
+  }, [product.ID]);
 
   if (!product) {
     return <div>Loading...</div>;

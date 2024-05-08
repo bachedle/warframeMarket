@@ -53,7 +53,7 @@ function HomePage() {
           </Link>
         </div>
       </div>
-
+      {/* <div class="big-red__button"><svg class="wfm-icon icon-plus-square" viewBox="0 0 448 512"></svg></div> */}
       <div className="productList">
       {listOfProducts.map((value, key) => (
           <div className="product-card" key={key}>

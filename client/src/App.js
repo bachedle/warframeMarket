@@ -11,6 +11,7 @@ import PlaceOrder from './pages/place-order/PlaceOrder';
 import User from './pages/account/user/User';
 import Login from './pages/account/login/Login';
 import Createtransaction from './pages/create-transaction/Createtransaction';
+import ProductDetail from './pages/DetailProduct/ProductDetail';
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
             <Route path ="/Weapons" exact element={<WeaponPage/>}></Route>
             <Route path ="/Mod" exact element={<ModPage/>}></Route>
             <Route path ="/PlaceOrder" exact element={<PlaceOrder/>}></Route>
-
+            <Route path ="/:Name" exact element={<ProductDetail/>}></Route>
             <Route path ="/Users" exact element={<User/>}></Route>
             <Route path ="Login" exact element={<Login/>}></Route>
 
