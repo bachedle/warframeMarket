@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PlaceOrder() {
+function Register() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function PlaceOrder() {
   )
 }
 
-export default PlaceOrder
+export default Register
