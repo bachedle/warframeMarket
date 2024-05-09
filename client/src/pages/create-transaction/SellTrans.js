@@ -14,8 +14,8 @@ function SellTrans() {
           <div className='bodyContent'>
             <div className='itemContainer'>
               <label for="orderItemName">Item Name</label>
-              <section className='input'>
-                <input type ='text' placeholder ="Item" value></input>
+              <section className='itemInput'>
+                <input type ='text' placeholder ="Item"></input>
               </section>
             </div>
             <div className='misContainer'>
@@ -23,13 +23,13 @@ function SellTrans() {
                 <div className='price'>
                   <label for="orderItemPrice">Price per unit</label>
                   <section className='input'>
-                    <input type ='number' id="orderItemPrice" placeholder ="e.g. 1000" value></input>
+                    <input type ='number' id="orderItemPrice" placeholder ="e.g. 1000" ></input>
                   </section>
                 </div>
                 <div className='quantity'>
                   <label for="orderQuantity">Quantity</label>
                   <section className='input'>
-                    <input type ='number' id="orderQuantity" placeholder ="e.g. 3" value></input>
+                    <input type ='number' id="orderQuantity" placeholder ="e.g. 3" ></input>
                   </section>
                 </div>
               </div>

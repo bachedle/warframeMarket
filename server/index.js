@@ -1,9 +1,9 @@
 //nodejs express
-import express from 'express'
-import mysql from 'mysql'
-import cors from 'cors'
-import cookieParser from 'cookie-parser'
-import jwt from 'jsonwebtoken'
+// import express from 'express'
+// import mysql from 'mysql'
+// import cors from 'cors'
+// import cookieParser from 'cookie-parser'
+// import jwt from 'jsonwebtoken'
 
 const express = require("express");
 const app = express();
