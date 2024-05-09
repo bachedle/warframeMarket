@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../home-page/HomePage.css";
 import "../search-section/SearchSection.css";
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./HomePage.css";
 import warframeImg from "../../assets/gauss.png";
 import weaponImg from "../../assets/AcceltraPrime.webp";
@@ -53,7 +53,6 @@ function HomePage() {
           </Link>
         </div>
       </div>
-      {/* <div class="big-red__button"><svg class="wfm-icon icon-plus-square" viewBox="0 0 448 512"></svg></div> */}
       <div className="productList">
       {listOfProducts.map((value, key) => (
           <div className="product-card" key={key}>

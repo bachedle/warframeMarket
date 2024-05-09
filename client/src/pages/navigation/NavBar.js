@@ -70,7 +70,9 @@ function NavBar() {
                 User 
               </Link> */}
               <div className='loginBtn'>
-                <a href='Login'>Logout</a>
+                <Link to="/Login">
+                  Logout
+                </Link>
               </div>
             </div>  
           </nav>
@@ -104,7 +106,9 @@ function NavBar() {
                 User 
               </Link> */}
               <div className='loginBtn'>
-                <a href='Login'>Login</a>
+                <Link to="/Login">
+                  Login 
+                </Link>
               </div>
             </div>  
           </nav>
