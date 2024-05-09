@@ -5,8 +5,8 @@ body {
 
 .floating-container {
     position: fixed;
-    width: 100px;
-    height: 100px;
+    width: 65px;
+    height: 65px;
     bottom: 0;
     right: 0;
     margin: 35px 25px;
