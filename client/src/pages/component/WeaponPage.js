@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { Link } from "react-router-dom"
 import './subpage.css'
 import axios from 'axios'
 
@@ -16,6 +17,7 @@ function WeaponPage() {
       <div className='productList'>
       {postObject.map((value, key) => (
           <div className="productCapsule">
+            <Link to={`/${value.Name}`} className="Product-card-link">
             <div className="name"> {value.Name}</div>
             <div className="type"> {value.Type}</div>
             {value.ModRank !== null && (
@@ -34,6 +36,7 @@ function WeaponPage() {
               </div>
             )}
             <div className="tax"> Tax: {value.Tax}</div>
+            </Link>
           </div>
         ))}
       </div>

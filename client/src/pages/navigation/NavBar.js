@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //import Home from '../Home';
 //import CreatePost from '../CreatePost';
 //import Post from '../Post';

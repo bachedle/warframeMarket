@@ -14,7 +14,7 @@ function ProductDetail() {
       setProduct(response.data);
     });
   }, [Name]);
-  console.log(product);
+  // console.log(product);
   useEffect(() => {
     if (product.ID) {
       axios.get(`http://localhost:2001/transactions/Sell/${product.ID}`).then((response) => {
@@ -63,7 +63,16 @@ function ProductDetail() {
         {transaction.length > 0 ? (
           transaction.map(transaction => (
             <li key={transaction.id}>
-              Customer Name: {transaction.Customer.Name}
+              Customer Name: {transaction.Customer.Name} - 
+              Status: {transaction.Customer.Status} -
+              Reputation: {transaction.Customer.Reputation} -
+              Price: {transaction.Price} -
+              Quantity: {transaction.Quantity} -
+              {transaction.Product.Type === "Mod" && ( // Check if product type is "Mod"
+                <>
+                  Rank: {transaction.Product.Rank} {/* Render Rank if type is "Mod" */}
+                </>
+              )}
             </li>
           ))
         ) : (
