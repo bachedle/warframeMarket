@@ -1,6 +1,11 @@
-import React from 'react'
+import React from 'react';
 
 function SellTrans() {
+  const handleConfirm = () => {
+    // Handle the confirm button click event
+    console.log("Confirm button clicked");
+  };
+
   return (
     <div>
       <div className='modalContent'>
@@ -13,23 +18,23 @@ function SellTrans() {
         <div className='modalBody'>
           <div className='bodyContent'>
             <div className='itemContainer'>
-              <label for="orderItemName">Item Name</label>
-              <section className='itemInput'>
-                <input type ='text' placeholder ="Item"></input>
+              {/* <label htmlFor="orderItemName">Item Name</label> */}
+              <section className='item-input'>
+                <input type='text' placeholder="Item" id="orderItemName" />
               </section>
             </div>
             <div className='misContainer'>
               <div className='rowCompact'>
                 <div className='price'>
-                  <label for="orderItemPrice">Price per unit</label>
-                  <section className='input'>
-                    <input type ='number' id="orderItemPrice" placeholder ="e.g. 1000" ></input>
+                  {/* <label htmlFor="orderItemPrice">Price per unit</label> */}
+                  <section className='price-input'>
+                    <input type='number' id="orderItemPrice" placeholder="e.g. 1000" />
                   </section>
                 </div>
                 <div className='quantity'>
-                  <label for="orderQuantity">Quantity</label>
-                  <section className='input'>
-                    <input type ='number' id="orderQuantity" placeholder ="e.g. 3" ></input>
+                  {/* <label htmlFor="orderQuantity">Quantity</label> */}
+                  <section className='quantity-input'>
+                    <input type='number' id="orderQuantity" placeholder="e.g. 3" />
                   </section>
                 </div>
               </div>
@@ -39,17 +44,16 @@ function SellTrans() {
 
         <div className='modalAction'>
           <div className='buttonHolder'>
-            <button className='button' tabindex ="0" type='button'>
+            <button className='button' tabIndex="0" type='button' onClick={handleConfirm}>
               <div>
                 <span>Confirm</span>
               </div>
             </button>
           </div>
         </div>
-
       </div>
     </div>
-  )
+  );
 }
 
-export default SellTrans
+export default SellTrans;

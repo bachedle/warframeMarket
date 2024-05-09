@@ -1,60 +1,119 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "../create-transaction/FloatingButton.css";
 import "../create-transaction/Createtransaction.css";
-// import addBtn from '../../assets/add.png'
+
 function FloatingButton() {
-  const [sell, setsell] = useState(false);
-  const setsellpopup = () => {
-    setsell(true);
+  const [sell, setSell] = useState(false);
+  const [buy, setBuy] = useState(false);
+  const [itemName, setItemName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const sellButtonRef = useRef(null);
+  const buyButtonRef = useRef(null);
+
+  const setSellPopup = () => {
+    setSell(true);
   };
+
+  const setBuyPopup = () => {
+    setBuy(true);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const modalContent = document.querySelector(".modalContent");
+      const floatingButton = document.querySelector(".floating-button");
+
+      if (
+        modalContent &&
+        !modalContent.contains(event.target) &&
+        !floatingButton.contains(event.target)
+      ) {
+        setSell(false);
+        setBuy(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleSellClick = (event) => {
+    event.stopPropagation();
+    setSellPopup();
+  };
+
+  const handleBuyClick = (event) => {
+    event.stopPropagation();
+    setBuyPopup();
+  };
+
+  const handleConfirm = () => {
+    // Handle the confirm button click event
+    console.log("Confirm button clicked");
+    console.log("Item Name:", itemName);
+    console.log("Price:", price);
+    console.log("Quantity:", quantity);
+  };
+
   return (
     <div className="floating-container">
       <div className="floating-button">+</div>
       <div className="element-container">
-        <a href="/Buy" className="float-element">
+        <div className="float-element" onClick={handleBuyClick} ref={buyButtonRef}>
           <i className="material-icon">Buy</i>
-        </a>
-        <a className="float-element" onClick={setsellpopup}>
+        </div>
+        <div className="float-element" onClick={handleSellClick} ref={sellButtonRef}>
           <i className="material-icon">Sell</i>
-        </a>
-        {sell && (
+        </div>
+        {(sell || buy) && (
           <div className="modalContent">
             <div className="modalHeader">
               <div className="headerContent">
-                <h2>Selling Something?</h2>
+                <h2>{sell ? "Selling Something?" : "Buying Something?"}</h2>
               </div>
             </div>
 
             <div className="modalBody">
               <div className="bodyContent">
                 <div className="itemContainer">
-                  <label for="orderItemName">Item Name</label>
+                  <label htmlFor="orderItemName">Item Name</label>
                   <section className="input">
-                    <input type="text" placeholder="Item" value></input>
+                    <input
+                      type="text"
+                      placeholder="Item"
+                      value={itemName}
+                      onChange={(e) => setItemName(e.target.value)}
+                    />
                   </section>
                 </div>
                 <div className="misContainer">
                   <div className="rowCompact">
                     <div className="price">
-                      <label for="orderItemPrice">Price per unit</label>
+                      <label htmlFor="orderItemPrice">Price per unit</label>
                       <section className="input">
                         <input
                           type="number"
                           id="orderItemPrice"
                           placeholder="e.g. 1000"
-                          value
-                        ></input>
+                          value={price}
+                          onChange={(e) => setPrice(e.target.value)}
+                        />
                       </section>
                     </div>
                     <div className="quantity">
-                      <label for="orderQuantity">Quantity</label>
+                      <label htmlFor="orderQuantity">Quantity</label>
                       <section className="input">
                         <input
                           type="number"
                           id="orderQuantity"
                           placeholder="e.g. 3"
-                          value
-                        ></input>
+                          value={quantity}
+                          onChange={(e) => setQuantity(e.target.value)}
+                        />
                       </section>
                     </div>
                   </div>
@@ -64,7 +123,12 @@ function FloatingButton() {
 
             <div className="modalAction">
               <div className="buttonHolder">
-                <button className="button" tabindex="0" type="button">
+                <button
+                  className="button"
+                  tabIndex="0"
+                  type="button"
+                  onClick={handleConfirm}
+                >
                   <div>
                     <span>Confirm</span>
                   </div>
