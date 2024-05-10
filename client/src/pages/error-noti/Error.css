@@ -1,0 +1,33 @@
+.error-body {
+    font-family: Arial, sans-serif;
+    background-color: #f1f1f1;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error-container {
+    text-align: center;
+  }
+  
+  .error-container h1 {
+    font-size: 120px;
+    font-weight: bold;
+    margin-top: -100px;
+    margin-bottom: 5px;
+    color: #012a1a;
+  }
+  
+  .error-container p {
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .home-link {
+    color: #3498db;
+    text-decoration: none;
+  }

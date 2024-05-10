@@ -20,6 +20,7 @@ import Login from "./pages/account/login/Login";
 import ProductDetail from "./pages/DetailProduct/ProductDetail";
 import FloatingButton from "./pages/create-transaction/FloatingButton";
 import SellTrans from "./pages/create-transaction/SellTrans";
+import Error from "./pages/error-noti/Error"; //nho xoa neu k xai
 function App() {
   return (
     <div className="App">
@@ -37,6 +38,10 @@ function App() {
           <Route path="/:Name" exact element={<ProductDetail />}></Route>
           <Route path="/Users" exact element={<User />}></Route>
           <Route path="/Login" exact element={<Login />}></Route>
+
+          {/* cai dong nay chi de test hien thi thoi */}
+          <Route path="/Error" exact element={<Error />}></Route> 
+
         </Routes>
         <div>
           <Footer></Footer>
