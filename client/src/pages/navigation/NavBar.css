@@ -218,7 +218,7 @@
 }
 
 /* popup status */
-.success-popup-overlay,.error-popup-overlay  {
+.success-popup-overlay,.error-popup-overlay,.overlay  {
   position: fixed;
   top: 0;
   left: 0;
