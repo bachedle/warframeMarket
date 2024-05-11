@@ -32,6 +32,7 @@ function ProductDetail() {
       <div className="product-detail">
         <h2>{product.Name}</h2>
         <div className="info-item">
+          <img src = ""></img>
           <div className="info-item">
             {product.ModRank !== null && (
               <div className="modrank"> Mod Rank: {product.ModRank}</div>
@@ -63,16 +64,11 @@ function ProductDetail() {
         {transaction.length > 0 ? (
           transaction.map(transaction => (
             <li key={transaction.id}>
-              Customer Name: {transaction.Customer.Name} - 
-              Status: {transaction.Customer.Status} -
-              Reputation: {transaction.Customer.Reputation} -
-              Price: {transaction.Price} -
-              Quantity: {transaction.Quantity} -
-              {transaction.Product.Type === "Mod" && ( // Check if product type is "Mod"
-                <>
-                  Rank: {transaction.Product.Rank} {/* Render Rank if type is "Mod" */}
-                </>
-              )}
+              Customer Name: {transaction.User.Name} - 
+              Status: {transaction.User.Status} -
+              Reputation: {transaction.User.Reputation} -
+              Price: {transaction.Price}p -
+              Quantity: {transaction.Quantity}
             </li>
           ))
         ) : (

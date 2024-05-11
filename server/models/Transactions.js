@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      CustomerID: {
+      UserID: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -30,16 +30,16 @@ module.exports = (sequelize, DataTypes) => {
 
   // Define association with the Products model to establish foreign key constraint
   Transactions.associate = (models) => {
-    Transactions.belongsTo(models.Customers, {
-      foreignKey: "CustomerID", // Name of the foreign key column in the Transactions table
-      targetKey: "ID", // Name of the primary key column in the Customers table
-      onDelete: "CASCADE", // Define the onDelete behavior (optional)
+    Transactions.belongsTo(models.Users, {
+      foreignKey: "UserID", 
+      targetKey: "ID", 
+      onDelete: "CASCADE", 
     });
 
     Transactions.belongsTo(models.Products, {
-      foreignKey: "ProductID", // Name of the foreign key column in the Transactions table
-      targetKey: "ID", // Name of the primary key column in the Customers table
-      onDelete: "CASCADE", // Define the onDelete behavior (optional)
+      foreignKey: "ProductID", 
+      targetKey: "ID", 
+      onDelete: "CASCADE", 
     });
   };
 
