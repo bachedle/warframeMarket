@@ -15,7 +15,6 @@ import WeaponPage from "./pages/component/WeaponPage";
 import ModPage from "./pages/component/ModPage";
 import PlaceOrder from "./pages/place-order/PlaceOrder";
 import User from "./pages/account/user/User";
-import Login from "./pages/account/login/Login";
 // import Createtransaction from './pages/create-transaction/SellTrans';
 import ProductDetail from "./pages/DetailProduct/ProductDetail";
 import FloatingButton from "./pages/create-transaction/FloatingButton";
@@ -37,10 +36,8 @@ function App() {
           <Route path="/PlaceOrder" exact element={<PlaceOrder />}></Route>
           <Route path="/:Name" exact element={<ProductDetail />}></Route>
           <Route path="/Users" exact element={<User />}></Route>
-          <Route path="/Login" exact element={<Login />}></Route>
-
           {/* cai dong nay chi de test hien thi thoi */}
-          <Route path="/Error" exact element={<Error />}></Route> 
+          <Route path="/Error/:Code" exact element={<Error />}></Route> 
 
         </Routes>
         <div>
