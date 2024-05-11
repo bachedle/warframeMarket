@@ -112,8 +112,8 @@
   transform: translate(-50%, -50%);
   background-color:rgba(255, 245, 245, 0.808);
   padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
   padding-bottom: 30px;
   border-radius: 5%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -184,14 +184,14 @@
 .register-form-container {
   position: fixed;
   width: 500px; 
-  height: 300px;
+  height: 350px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color:rgba(255, 245, 245, 0.352);
+  background-color:rgba(255, 245, 245, 0.808);
   padding-top: 30px;
-  padding-left: 30px;
-  padding-right: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
   padding-bottom: 30px;
   border-radius: 5%;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -260,3 +260,14 @@
   overflow: hidden;
   pointer-events: none;
 } */
+.login-form-container .close-btn,
+.register-form-container .close-btn {
+  position: absolute;
+  top: 30px;
+  right: 25px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #666;
+}

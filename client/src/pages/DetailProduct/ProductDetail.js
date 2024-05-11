@@ -30,50 +30,69 @@ function ProductDetail() {
   return (
     <div className='product-detail-page'>
       <div className="product-detail">
-        <h2>{product.Name}</h2>
-        <div className="info-item">
-          <img src = ""></img>
-          <div className="info-item">
+        <div className='header-name'>{product.Name}</div>
+        <div className="info-container">
+          <img src="" alt="Product Image" />
+          <div className="info-items">
             {product.ModRank !== null && (
-              <div className="modrank"> Mod Rank: {product.ModRank}</div>
+              <div className="info-item">
+                Mod Rank: {product.ModRank}
+              </div>
             )}
-          </div>
-          <div className="info-item">
             {product.Rarity && (
-              <div className="rarity"> Rarity: {product.Rarity}</div>
+              <div className="info-item">
+                Rarity: {product.Rarity}
+              </div>
             )}
-          </div>
-          <div className="info-item">
             {product.Duncat && (
-              <div className="duncat"> Duncat: {product.Duncat}</div>
+              <div className="info-item">
+                Duncat: {product.Duncat}
+              </div>
             )}
-          </div>
-          <div className="info-item">
             {product.MasteryRank && (
-              <div className="masteryrank">
+              <div className="info-item">
                 Mastery Rank: {product.MasteryRank}
               </div>
             )}
-          </div>
-          <div className="info-item">
-            Tax: {product.Tax}
+            <div className="info-item">
+              Tax: {product.Tax}
+            </div>
           </div>
         </div>
       </div>
-      <div className="list-of-transactions">
-        {transaction.length > 0 ? (
-          transaction.map(transaction => (
-            <li key={transaction.id}>
-              Customer Name: {transaction.User.Name} - 
-              Status: {transaction.User.Status} -
-              Reputation: {transaction.User.Reputation} -
-              Price: {transaction.Price}p -
-              Quantity: {transaction.Quantity}
-            </li>
-          ))
-        ) : (
-          <div>No transactions found</div>
-        )}
+      <div className="transaction-lists">
+        <div className="productList">
+          <h3 className='buy'>BUY</h3>
+          {transaction.length > 0 ? (
+            transaction.map(transaction => (
+              <div className="transaction-item" key={transaction.id}>
+                <div>Customer Name: {transaction.User.Name}</div>
+                <div>Status: {transaction.User.Status}</div>
+                <div>Reputation: {transaction.User.Reputation}</div>
+                <div>Price: {transaction.Price}p</div>
+                <div>Quantity: {transaction.Quantity}</div>
+              </div>
+            ))
+          ) : (
+            <div>No buy transactions found</div>
+          )}
+        </div>
+        <div className="productList">
+          <h3 className='sell'>SELL</h3>
+          {transaction.length > 0 ? (
+            transaction.map(transaction => (
+              <div className="transaction-item" key={transaction.id}>
+                <div>Customer Name: {transaction.User.Name}</div>
+                <div>Status: {transaction.User.Status}</div>
+                <div>Reputation: {transaction.User.Reputation}</div>
+                <div>Price: {transaction.Price}p</div>
+                <div>Quantity: {transaction.Quantity}</div>
+              </div>
+            ))
+          ) : (
+            <div>No sell transactions found</div>
+          )}
+        </div>
       </div>
     </div>
   );

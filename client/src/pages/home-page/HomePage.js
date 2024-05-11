@@ -55,7 +55,7 @@ function HomePage() {
       </div>
       <div className="productList">
       {listOfProducts.map((value, key) => (
-          <div className="product-card" key={key}>
+          <div className="productCapsule" key={key}>
             <Link to={`/${value.Name}`} className="Product-card-link">
               <div className="product-image-container">
                 {/* <img className="product-image" src={getImageUrl(value.Name)} alt="Product" /> */}

@@ -1,4 +1,4 @@
-.HomePage {
+.homepage {
     display: flex;
     flex-direction: column;
 } 
@@ -86,12 +86,22 @@ display: flex;
 }
 
 .productCapsule {
-    border:2px, black;
-    box-shadow: black, 0px 0px 10px -10px;
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px -10px black;
     background-color: lightgray;
-    margin-top:8px;
-    padding-left:10px;
-    padding-top: 10px;
-    
-
-}
+    margin-top: 8px;
+    padding: 10px;
+    justify-content: space-between; /* Add this line to evenly space the items */
+  }
+  
+  .info {
+    display: flex; /* Add this line to make the info-items a flex container */
+    flex-direction: row;
+    justify-content: space-between; /* Add this line to evenly space the info-items */
+  }
+  
+  .info-item {
+    /* Add any additional styles you want for the info-items */
+  }

@@ -1,0 +1,114 @@
+.product-detail-page {
+    display: flex;
+    flex-direction: column;
+} 
+
+.header-name {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 70px;
+    color:darkslategray;
+    text-shadow: black, 0px 0px 10px -10px;
+}
+.info-container {
+    padding-top: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.info-container img {
+    position:absolute;
+    top: 200px;
+    left: 200px;
+    justify-content: flex-end;
+    float: left;
+}
+.info-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap:10px;
+}
+.transaction-lists {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    gap:200px;
+}
+
+.productList {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: whitesmoke;
+    padding-top: 50px;
+    gap:30px;
+}
+
+.buy {
+    font-size: 50px;
+    border-style: solid none;
+    border-radius: 8px;
+    padding-bottom: 0px;
+    color: white;
+    background: #0f9d70;
+    width: 300%;
+}
+
+.sell {
+    font-size: 50px;
+    border-style: solid none;
+    border-radius: 8px;
+    padding-bottom: 0px;
+    color: white;
+    background: #ca115e;
+    width: 300%;
+    
+}
+
+.product-detail {
+    display:flex;
+    flex-direction: column;
+    background-color: red;
+    background-image: url('../../assets/homebackground1.png');
+    background-position: top;
+    background-size:100%;
+    filter: brightness(100%);
+    background-repeat: no-repeat;
+    height: 450px;
+    /* margin: 20px; */
+    display: flex;
+    /* padding: 200px 0; */
+    justify-content: center;
+    text-align:center;
+    /* gap: 200px; */
+    transform: translate3d(3.2px,-8px,0px);
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    position: relative;
+    z-index: -10000;
+
+}
+
+.productList {
+    background-color: rgba(220, 220, 220, 0.756);
+    padding-top: 50px;
+}
+
+.transaction-item {
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px -10px black;
+    background-color: lightgray;
+    margin-top: 8px;
+    padding: 10px;
+    justify-content: space-between;
+  }
+  
