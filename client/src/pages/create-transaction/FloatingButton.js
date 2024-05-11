@@ -9,6 +9,29 @@ function FloatingButton() {
   const [buy, setBuy] = useState(false);
   const [listOfProductNames, setListOfProductNames] = useState([]);
 
+  //clickoutside handler
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const modalContent = document.querySelector(".modalContent");
+      const floatingButton = document.querySelector(".floating-button");
+
+      if (
+        modalContent &&
+        !modalContent.contains(event.target) &&
+        !floatingButton.contains(event.target)
+      ) {
+        setSell(false);
+        setBuy(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
   useEffect(() => {
     axios.get(`http://localhost:2001/products`)
       .then((response) => {
@@ -30,9 +53,18 @@ function FloatingButton() {
     setSell(false); // Close the sell popup if it's open
   };
 
-  const handleClose = () => {
-    setSell(false);
-    setBuy(false);
+  // const handleClose = () => {
+  //   setSell(false);
+  //   setBuy(false);
+  // };
+  const handleSellClick = (event) => {
+    event.stopPropagation();
+    setSellPopup();
+  };
+
+  const handleBuyClick = (event) => {
+    event.stopPropagation();
+    setBuyPopup();
   };
 
   const handleConfirm = (values) => {
@@ -45,10 +77,10 @@ function FloatingButton() {
     <div className="floating-container">
       <div className="floating-button">+</div>
       <div className="element-container">
-        <div className="float-element" onClick={setBuyPopup}>
+        <div className="float-element" onClick={handleBuyClick}>
           <i className="material-icon">Buy</i>
         </div>
-        <div className="float-element" onClick={setSellPopup}>
+        <div className="float-element" onClick={handleSellClick}>
           <i className="material-icon">Sell</i>
         </div>
         {(sell || buy) && (
@@ -56,9 +88,9 @@ function FloatingButton() {
             <div className="modalHeader">
               <div className="headerContent">
                 <h2>{sell ? "Selling Something?" : "Buying Something?"}</h2>
-                <button className="close-btn" onClick={handleClose}>
+                {/* <button className="close-btn" onClick={handleClose}>
                   X
-                </button>
+                </button> */}
               </div>
             </div>
 
