@@ -111,3 +111,9 @@ body {
 .floating-container:not(:hover) .float-element {
     animation: fade-out 0.2s forwards;
 }
+
+.itemContainer select {
+    max-height: 150px; /* Set a maximum height for the dropdown */
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  

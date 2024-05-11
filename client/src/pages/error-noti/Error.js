@@ -19,11 +19,11 @@ function Error() {
     <div className='error-body'>
         <div class="error-container">
             {/* test */}
-            <h1 id="error-code">con cac</h1>
-            <p id="error-message">caidai</p>
+            {/* <h1 id="error-code">con cac</h1>
+            <p id="error-message">caidai</p> */}
             {/* real */}
-            {/* <h1 className="error-title">{errorTitle}</h1>
-            <p className="error-message">{errorMessage}</p> */}
+            <h1 className="error-title">{errorTitle}</h1>
+            <p className="error-message">{errorMessage}</p>
             <a href="/" class="home-link">Go to Homepage</a>
         </div>
     </div>
