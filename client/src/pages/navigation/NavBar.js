@@ -8,7 +8,6 @@ import { AiOutlineClose } from 'react-icons/ai';
 import homebutton from '../../assets/home-button.png';
 import './NavBar.css'
 import '../create-transaction/FloatingButton.css';
-
 function NavBar() {
   
   // // user state
@@ -113,7 +112,7 @@ function NavBar() {
   //Floating Button handlers
   const [sell, setSell] = useState(false);
   const [buy, setBuy] = useState(false);
-  const [listOfProductNames, setListOfProductNames] = useState([]);
+  const [listOfProducts, setListOfProducts] = useState([]);
 
   //click outside
   useEffect(() => {
@@ -152,13 +151,18 @@ function NavBar() {
   useEffect(() => {
     axios.get(`http://localhost:2001/products`)
       .then((response) => {
-        const productNames = response.data.map(product => product.Name);
-        setListOfProductNames(productNames);
+        const products = response.data;
+        const productDetails = products.map(product => ({
+          ID: product.ID,
+          Name: product.Name
+        }));
+        setListOfProducts(productDetails);
       })
       .catch((error) => {
-        console.error("Error fetching product names:", error);
+        console.error("Error fetching products:", error);
       });
   }, []);
+  
 
   const setSellPopup = () => {
     setSell(true);
@@ -175,10 +179,18 @@ function NavBar() {
   //   setBuy(false);
   // };
 
-  const handleConfirm = (values) => {
-    // Handle the confirm button click event
-    console.log("Confirm button clicked");
-    console.log("Form values:", values);
+  const handleConfirm = (data) => {
+    axios.post('http://localhost:2001/transactions', data)
+      .then(() => {
+        console.log("Register success");
+        setShowRegisterSuccessPopup(true);
+      })
+      .catch((error) => {
+        console.error("Register Error:", error);
+        setShowRegisterErrorPopup(true);
+      });
+    setBuy(false)
+    setSell(false)
   };
 
 
@@ -213,7 +225,7 @@ function NavBar() {
                     pathname: "/Users",
                     state: { user: user }
                   }}>
-                    User 
+                    {user.Name} 
                   </Link>
                 </div>
               ) : (
@@ -272,7 +284,7 @@ function NavBar() {
             </div>
             )}
           {showRegisterForm && (
-            <div className='biggerContainer'>
+            <div className='overlay'>
               <div className='register-form-container'>
                 <h2>Create new account</h2>
                 <button className="close-btn" onClick={() => setShowRegisterForm(false)}>
@@ -290,6 +302,11 @@ function NavBar() {
                       <Field type='password' id='password' name='password' />
                       <ErrorMessage name='password' component='div' className='error-message' />
                     </div>
+                    <div className='form-group'>
+                      <label htmlFor='username'>Name</label>
+                      <Field type='text' id='Name' name='Name' />
+                      <ErrorMessage name='Name' component='div' className='error-message' />
+                    </div>
                     <button type='submit' className='login-button'>
                       Sign up
                     </button>
@@ -306,7 +323,7 @@ function NavBar() {
             <div className="success-popup-overlay" onClick={closeLoginPopups}>
               
               <div className="success-popup">         
-                  <p>Login Successfully!</p>
+                  <p>Welcome, Tenno!</p>
               </div>
             </div>
           )}
@@ -333,8 +350,6 @@ function NavBar() {
               </div>
             </div>
           )}
-      </div> 
-      <div className='FloatingButton'>
         <div className="floating-container">
           <div className="floating-button">+</div>
           <div className="element-container">
@@ -345,6 +360,7 @@ function NavBar() {
               <i className="material-icon">Sell</i>
             </div>
             {(sell || buy) && (
+              <div className="overlay">
               <div className="modalContent">
                 <div className="modalHeader">
                   <div className="headerContent">
@@ -359,33 +375,35 @@ function NavBar() {
                   <div className="bodyContent">
                     <Formik
                       initialValues={{
-                        itemName: "",
-                        price: "",
-                        quantity: "",
+                        ProductID: "", // Set initially as an empty string
+                        UserID: user ? user.ID : "", // Assuming user is available and contains an ID
+                        Price: "",
+                        Type: sell ? "Sell" : "Buy", // Set the Type based on the 'sell' variable
+                        Quantity: "",
                       }}
                       onSubmit={handleConfirm}
                     >
                       <Form>
                         <div className="itemContainer">
-                          <label htmlFor="itemName">Item Name</label>
-                          <Field as="select" id="itemName" name="itemName">
-                            {listOfProductNames.map((productName, index) => (
-                              <option key={index} value={productName}>{productName}</option>
+                          <label htmlFor="ProductID">Item Name</label>
+                          <Field as="select" id="ProductID" name="ProductID">
+                            {listOfProducts.map(({ ID, Name }, index) => (
+                              <option key={index} value={ID}>{Name}</option>
                             ))}
                           </Field>
                           <ErrorMessage name="itemName" component="div" />
                         </div>
                         <div className="misContainer">
                           <div className="rowCompact">
-                            <div className="price">
-                              <label htmlFor="price">Price per unit</label>
-                              <Field type="number" id="price" name="price" />
-                              <ErrorMessage name="price" component="div" />
+                            <div className="Price">
+                              <label htmlFor="Price">Price per unit</label>
+                              <Field type="number" id="Price" name="Price" />
+                              <ErrorMessage name="Price" component="div" />
                             </div>
-                            <div className="quantity">
-                              <label htmlFor="quantity">Quantity</label>
-                              <Field type="number" id="quantity" name="quantity" />
-                              <ErrorMessage name="quantity" component="div" />
+                            <div className="Quantity">
+                              <label htmlFor="Quantity">Quantity</label>
+                              <Field type="number" id="Quantity" name="Quantity" />
+                              <ErrorMessage name="Quantity" component="div" />
                             </div>
                           </div>
                         </div>
@@ -403,10 +421,11 @@ function NavBar() {
                   </div>
                 </div>
               </div>
+              </div>
             )}
           </div>
         </div>
-      </div>
+      </div> 
     </div>
   )
 }

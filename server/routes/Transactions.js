@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Transactions, Products, Customers } = require("../models");
+const { Transactions, Products, Users } = require("../models");
 
 router.get("/", async (req, res) => {
     try {
@@ -32,7 +32,7 @@ router.get("/Sell/:id", async (req, res) => {
             where: { ProductID: transactionID, Type: 'Sell' },
             include: [
                 { model: Products },
-                { model: Customers }
+                { model: Users }
             ],
             order: [['ID', 'DESC']] // Sort by ID column in descending order
         });
@@ -55,5 +55,17 @@ router.get("/Buy", async (req, res) => {
       res.status(500).json({ error: 'Server error' });
     }
 });
+
+router.post("/", async (req, res) => {
+  try {
+    const { ProductID, UserID, Price, Type, Quantity } = req.body;
+    const transaction = await Transactions.create({ ProductID, UserID, Price, Type, Quantity });
+    res.json(transaction);
+  } catch (error) {
+    console.error("Error creating transaction:", error);
+    res.status(500).json({ error: "An error occurred while creating the transaction." });
+  }
+});
+
 
 module.exports = router;
