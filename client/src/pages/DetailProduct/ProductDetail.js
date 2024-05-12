@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import './ProductDetail.css';
@@ -7,7 +7,12 @@ import { Link } from 'react-router-dom';
 function ProductDetail() {
   let { Name } = useParams();
   const [product, setProduct] = useState([]);
-  const [transaction, setTransaction] = useState([]);
+  const [transactionSell, setTransactionSell] = useState([]);
+  const [transactionBuy, setTransactionBuy] = useState([]);
+  const textRef = useRef(null);
+
+  // Pop-up state for success/failure of transaction
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:2001/products/${Name}`).then((response) => {
@@ -18,7 +23,15 @@ function ProductDetail() {
   useEffect(() => {
     if (product.ID) {
       axios.get(`http://localhost:2001/transactions/Sell/${product.ID}`).then((response) => {
-        setTransaction(response.data);
+        setTransactionSell(response.data);
+      });
+    }
+  }, [product.ID]);
+
+  useEffect(() => {
+    if (product.ID) {
+      axios.get(`http://localhost:2001/transactions/Buy/${product.ID}`).then((response) => {
+        setTransactionBuy(response.data);
       });
     }
   }, [product.ID]);
@@ -27,8 +40,19 @@ function ProductDetail() {
     return <div>Loading...</div>;
   }
 
+
+
+  const closePopups = () => {
+    if (showPopup) { 
+      if (textRef.current) {
+        navigator.clipboard.writeText(textRef.current.innerText);
+      }
+      setShowPopup(false);
+    }
+  };
+
   return (
-    <div className='product-detail-page'>
+    <div className='product-detail-page' onClick={closePopups}>
       <div className="product-detail">
         <div className='header-name'>{product.Name}</div>
         <div className="info-container">
@@ -59,18 +83,34 @@ function ProductDetail() {
             </div>
           </div>
         </div>
+        <div className='wiki-link'>
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer">
+            Wiki
+          </a>
+        </div>
       </div>
       <div className="transaction-lists">
         <div className="productList">
           <h3 className='buy'>BUY</h3>
-          {transaction.length > 0 ? (
-            transaction.map(transaction => (
-              <div className="transaction-item" key={transaction.id}>
-                <div>Customer Name: {transaction.User.Name}</div>
-                <div>Status: {transaction.User.Status}</div>
-                <div>Reputation: {transaction.User.Reputation}</div>
-                <div>Price: {transaction.Price}p</div>
-                <div>Quantity: {transaction.Quantity}</div>
+          {transactionBuy.length > 0 ? (
+            transactionBuy.map(transactionBuy => (
+              <div className="transaction-item" key={transactionBuy.id} onClick={() => setShowPopup(true)}>
+                <div>Buyer Name: {transactionBuy.User.Name}</div>
+                <div>Status: {transactionBuy.User.Status}</div>
+                <div>Reputation: {transactionBuy.User.Reputation}</div>
+                <div>Price: {transactionBuy.Price}p</div>
+                <div>Quantity: {transactionBuy.Quantity}</div>
+                {showPopup && (
+                  <div className="error-popup-overlay">
+                    <div className="buy-popup">
+                      <p>Please message {transactionSell.User.Name} to buy</p>
+                      <p className='message' ref={textRef}>
+                        /w {transactionBuy.User.Name} Hi! I want to sell: "{product.Name}" for {transactionBuy.Price} platinum.
+                      </p>
+                      <p className='note'>This message will be copy to clipboard after close, please sent that message to the trader</p>
+                    </div>
+                  </div>
+                )}
               </div>
             ))
           ) : (
@@ -79,14 +119,25 @@ function ProductDetail() {
         </div>
         <div className="productList">
           <h3 className='sell'>SELL</h3>
-          {transaction.length > 0 ? (
-            transaction.map(transaction => (
-              <div className="transaction-item" key={transaction.id}>
-                <div>Customer Name: {transaction.User.Name}</div>
-                <div>Status: {transaction.User.Status}</div>
-                <div>Reputation: {transaction.User.Reputation}</div>
-                <div>Price: {transaction.Price}p</div>
-                <div>Quantity: {transaction.Quantity}</div>
+          {transactionSell.length > 0 ? (
+            transactionSell.map(transactionSell => (
+              <div className="transaction-item" key={transactionSell.id} onClick={() => setShowPopup(true)}>
+                <div>Seller Name: {transactionSell.User.Name}</div>
+                <div>Status: {transactionSell.User.Status}</div>
+                <div>Reputation: {transactionSell.User.Reputation}</div>
+                <div>Price: {transactionSell.Price}p</div>
+                <div>Quantity: {transactionSell.Quantity}</div>
+                {showPopup && (
+                  <div className="error-popup-overlay">
+                    <div className="sell-popup">
+                      <p>Please message {transactionSell.User.Name} to sell</p>
+                      <p className='message' ref={textRef}>
+                        /w {transactionSell.User.Name} Hi! I want to sell: "{product.Name}" for {transactionSell.Price} platinum. 
+                      </p>
+                      <p className='note'>This message will be copy to clipboard after close, please sent that message to the trader</p>
+                    </div>
+                  </div>
+                )}
               </div>
             ))
           ) : (
@@ -94,6 +145,7 @@ function ProductDetail() {
           )}
         </div>
       </div>
+      
     </div>
   );
 }

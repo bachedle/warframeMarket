@@ -43,6 +43,24 @@ router.get("/Sell/:id", async (req, res) => {
     }
 });
 
+router.get("/Buy/:id", async (req, res) => {
+  try {
+      const transactionID = req.params.id;
+      const listOfTransactions = await Transactions.findAll({
+          where: { ProductID: transactionID, Type: 'Buy' },
+          include: [
+              { model: Products },
+              { model: Users }
+          ],
+          order: [['ID', 'DESC']] // Sort by ID column in descending order
+      });
+      res.json(listOfTransactions);
+  } catch (error) {
+      console.error('Error fetching transactions:', error);
+      res.status(500).json({ error: 'Server error' });
+  }
+});
+
 router.get("/Buy", async (req, res) => {
     try {
       const listOfTransactions = await Transactions.findAll({

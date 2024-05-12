@@ -25,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       Status: {
         type: DataTypes.STRING,
         allowNull: true,
+        defaultValue: 'Offline'
       },
       Reputation: {
         type: DataTypes.INTEGER,

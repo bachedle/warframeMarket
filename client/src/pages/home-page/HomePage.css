@@ -94,14 +94,35 @@ display: flex;
     margin-top: 8px;
     padding: 10px;
     justify-content: space-between; /* Add this line to evenly space the items */
+    width: 1000px; /* Set a fixed width for the product capsule */
+    height: 100px; /* Set a fixed height for the product capsule */
+    border: 1px solid #ccc; /* Add border for better visualization */
+    margin: 10px; /* Add margin around each product capsule */
   }
   
   .info {
-    display: flex; /* Add this line to make the info-items a flex container */
-    flex-direction: row;
-    justify-content: space-between; /* Add this line to evenly space the info-items */
+    display: grid;
+    grid-template-columns: repeat(3, 150px); /* Five columns with equal width */
+    grid-gap: 8px; /* Add gap between grid items */
   }
   
   .info-item {
-    /* Add any additional styles you want for the info-items */
+    margin-right: 10px; /* Add margin to the right of each item */
   }
+  
+  .info-item:last-child {
+    margin-right: 0; /* Remove margin from the last item to prevent extra space */
+  }
+
+  .img-name {
+    display: flex;
+    align-items: center; /* Center items vertically */
+  }
+  
+  .product-image {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make the image rounded */
+    margin-right: 10px; /* Add spacing between the image and name */
+  }
+  

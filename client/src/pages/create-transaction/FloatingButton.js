@@ -71,8 +71,7 @@ function FloatingButton() {
     // Handle the confirm button click event
     console.log("Confirm button clicked");
     console.log("Form values:", values);
-    setBuy(false)
-    setSell(false)
+    
   };
 
   return (
