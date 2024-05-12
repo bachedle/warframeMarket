@@ -25,6 +25,10 @@ function NavBar() {
   const [showRegisterSuccessPopup, setShowRegisterSuccessPopup] = useState(false);
   const [showRegisterErrorPopup, setShowRegisterErrorPopup] = useState(false);
 
+  // Pop-up state for success/failure of transaction
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // validation schema
@@ -109,6 +113,11 @@ function NavBar() {
     setShowRegisterErrorPopup(false);
   };
 
+  const closePopups = () => {
+    setShowSuccessPopup(false);
+    setShowErrorPopup(false);
+  };
+
   //Floating Button handlers
   const [sell, setSell] = useState(false);
   const [buy, setBuy] = useState(false);
@@ -183,11 +192,11 @@ function NavBar() {
     axios.post('http://localhost:2001/transactions', data)
       .then(() => {
         console.log("Register success");
-        setShowRegisterSuccessPopup(true);
+        setShowSuccessPopup(true);
       })
       .catch((error) => {
         console.error("Register Error:", error);
-        setShowRegisterErrorPopup(true);
+        setShowErrorPopup(true);
       });
     setBuy(false)
     setSell(false)
@@ -321,7 +330,6 @@ function NavBar() {
           )}
           {showLoginSuccessPopup && (
             <div className="success-popup-overlay" onClick={closeLoginPopups}>
-              
               <div className="success-popup">         
                   <p>Welcome, Tenno!</p>
               </div>
@@ -350,13 +358,28 @@ function NavBar() {
               </div>
             </div>
           )}
+          {showSuccessPopup && (
+            <div className="success-popup-overlay" onClick={closePopups}>
+              <div className="success-popup">
+                <p>transaction success</p>
+              </div>
+            </div>
+          )}
+          {showErrorPopup && (
+            <div className="error-popup-overlay" onClick={closePopups}>
+              <div className="error-popup">
+                <p>transaction failed</p>
+                <p>Please check your information again.</p>
+              </div>
+            </div>
+          )}
         <div className="floating-container">
           <div className="floating-button">+</div>
           <div className="element-container">
-            <div className="float-element" onClick={handleBuyClick}>
+            <div className="float-element" onClick={isLoggedIn ? handleBuyClick : () => setShowLoginErrorPopup(true)}>
               <i className="material-icon">Buy</i>
             </div>
-            <div className="float-element" onClick={handleSellClick}>
+            <div className="float-element" onClick={isLoggedIn ? handleSellClick : () => setShowLoginErrorPopup(true)}>
               <i className="material-icon">Sell</i>
             </div>
             {(sell || buy) && (
@@ -365,9 +388,6 @@ function NavBar() {
                 <div className="modalHeader">
                   <div className="headerContent">
                     <h2>{sell ? "Selling Something?" : "Buying Something?"}</h2>
-                    {/* <button className="close-btn" onClick={handleClose}>
-                      X
-                    </button> */}
                   </div>
                 </div>
 

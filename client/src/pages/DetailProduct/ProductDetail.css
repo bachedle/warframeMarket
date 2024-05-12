@@ -44,7 +44,7 @@
 .productList {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
     background-color: whitesmoke;
     padding-top: 50px;
@@ -58,7 +58,8 @@
     padding-bottom: 0px;
     color: white;
     background: #0f9d70;
-    width: 300%;
+    width: 800px;
+    max-width: 800px;
 }
 
 .sell {
@@ -68,8 +69,8 @@
     padding-bottom: 0px;
     color: white;
     background: #ca115e;
-    width: 300%;
-    
+    width: 800px;
+    max-width: 800px;
 }
 
 .product-detail {
@@ -102,13 +103,52 @@
 }
 
 .transaction-item {
-    display: flex;
-    flex-direction: row;
-    /* border: 2px solid black; */
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Adjusted for grid columns */
+    grid-template-rows: auto; /* Adjusted for grid rows */
+    gap: 8px; /* Added gap between grid items */
     box-shadow: 0 0 10px -10px black;
     background-color: lightgray;
+    width: 800px;
     margin-top: 8px;
     padding: 10px;
-    justify-content: space-between;
-  }
-  
+    justify-items: start;
+}
+
+.success-popup-overlay,.error-popup-overlay, .overlay  {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent black */
+    display: flex;
+    justify-content: center; /* center horizontally */
+    align-items: center; /* center vertically */
+    z-index: 1000;
+}
+
+.sell-popup, .buy-popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 1000px;
+    height: 300px;
+    font-size: 50px;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: #950D14;
+    z-index: 1000;
+}
+
+.message {
+    font-size: 30px;
+    color: black; /* Set text color to black */
+    margin-top: 50px; /* Add spacing of 40px on top */
+}
+
+.note {
+    font-size: 20px;
+    color: rgb(124, 124, 124); /* Set text color to black */
+    margin-top: 50px; /* Add spacing of 40px on top */
+}

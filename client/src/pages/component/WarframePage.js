@@ -1,49 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./subpage.css";
+import "../home-page/HomePage.css";
 import axios from "axios";
 
 function WarframePage() {
-  const [postObject, setPostObject] = useState([]);
+  const [listOfProducts, setListOfProducts] = useState([]);
   useEffect(
     () => {
       axios.get(`http://localhost:2001/products/Warframe`).then((response) => {
-        setPostObject(response.data);
+        setListOfProducts(response.data);
       });
     },
-    [
-      /*id*/
-    ]
+    []
   );
 
   return (
     <div className="subPage">
       <div className="warframeImage"></div>
       <div className="productList">
-        {postObject.map((value, key) => (
-          <div className="productCapsule">
-            <Link to={`/${value.Name}`} className="Product-card-link">
-              <div className="name"> {value.Name}</div>
-              <div className="type"> {value.Type}</div>
-              {value.ModRank !== null && (
-                <div className="modrank"> Mod Rank: {value.ModRank}</div>
-              )}
-              {value.Rarity && (
-                <div className="rarity"> Rarity: {value.Rarity}</div>
-              )}
-              {value.Duncat && (
-                <div className="duncat"> Duncat: {value.Duncat}</div>
-              )}
-              {value.MasteryRank && (
-                <div className="masteryrank">
-                  {" "}
-                  Mastery Rank: {value.MasteryRank}
+      {listOfProducts.map((value, key) => (
+            <div className="productCapsule" key={key}>
+              <Link to={`/${value.Name}`} className="Product-card-link">
+                <div className="product-details">
+                  <div className="img-name">
+                    <img className="product-image" src=''/*{getImageUrl(value.Name)}*/ />
+                    <div className="product-name">{value.Name}</div>
+                  </div>
+                  
+                  <div className="info">
+                    {value.Duncat && (
+                      <div className="info-item">
+                        {/* <img className="nutrition-icon" src={carbIcon} alt="Carb" /> */}
+                        <div className="duncat"> Duncat: {value.Duncat}</div>
+                      </div>
+                    )}
+                    <div className="info-item">
+                      Tax: {value.Tax}
+                    </div>
+                  </div>
+
                 </div>
-              )}
-              <div className="tax"> Tax: {value.Tax}</div>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   );
