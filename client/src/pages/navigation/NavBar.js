@@ -162,7 +162,7 @@ function NavBar() {
       .then((response) => {
         const products = response.data;
         const productDetails = products.map(product => ({
-          ID: product.ID,
+          id: product.ID,
           Name: product.Name
         }));
         setListOfProducts(productDetails);
@@ -171,7 +171,6 @@ function NavBar() {
         console.error("Error fetching products:", error);
       });
   }, []);
-  
 
   const setSellPopup = () => {
     setSell(true);
@@ -202,6 +201,28 @@ function NavBar() {
     setSell(false)
   };
 
+  const [color, setColor] = useState('red');
+  const [status, setStatus] = useState('Offline');
+
+  const handleUserClick = () => {
+    // Check if user is not null before accessing its properties
+    if (user) {
+      axios.put(`http://localhost:2001/auth/${user.ID}/${status}`)
+        .then(() => {
+          console.log("User status updated successfully");
+          setShowSuccessPopup(true);
+        })
+        .catch((error) => {
+          console.error("Error updating user status:", error);
+          setShowErrorPopup(true);
+        });
+      // Toggle between green and red colors
+      setColor(status === 'Offline' ? 'red' : 'green');
+    } else {
+      console.error("User is null");
+      // Handle the case where user is null (optional)
+    }
+  };  
 
   return (
     <div>
@@ -228,20 +249,20 @@ function NavBar() {
               <Link to="/Mod">
                 Mods 
               </Link>
-              {isLoggedIn ? (
-                <div className='user'>
-                  <Link to={{
-                    pathname: "/Users",
-                    state: { user: user }
-                  }}>
-                    {user.Name} 
-                  </Link>
-                </div>
-              ) : (
-                <div className='user' onClick={() => console.log("Please login first")}>
-                  {/* User  */}
-                </div>
-              )}
+              <div
+                className='user'
+                style={{ color: color }}
+                onClick={() => {
+                  if (user && isLoggedIn) {
+                    user.Status = user.Status === 'Online' ? 'Offline' : 'Online';
+                    setStatus(user.Status);
+                    handleUserClick();
+                  }
+                }}
+              >
+                {isLoggedIn ? (user && user.Name) : ''}
+              </div>
+
             </div>   
             <div>
               {isLoggedIn ? (
@@ -395,7 +416,7 @@ function NavBar() {
                   <div className="bodyContent">
                     <Formik
                       initialValues={{
-                        ProductID: "", // Set initially as an empty string
+                        ProductID: '', // Set initially as an empty string
                         UserID: user ? user.ID : "", // Assuming user is available and contains an ID
                         Price: "",
                         Type: sell ? "Sell" : "Buy", // Set the Type based on the 'sell' variable
@@ -406,12 +427,14 @@ function NavBar() {
                       <Form>
                         <div className="itemContainer">
                           <label htmlFor="ProductID">Item Name</label>
-                          <Field as="select" id="ProductID" name="ProductID">
-                            {listOfProducts.map(({ ID, Name }, index) => (
-                              <option key={index} value={ID}>{Name}</option>
+                          <Field as="select" id="ProductID" name="ProductID" >
+                            <option>Choose the product</option>
+                            {listOfProducts.map(({ id, Name }) => (                              
+                              <option key={id} value={id}>{Name}</option>
                             ))}
                           </Field>
-                          <ErrorMessage name="itemName" component="div" />
+
+                          <ErrorMessage name="ProductID" component="div" />
                         </div>
                         <div className="misContainer">
                           <div className="rowCompact">
