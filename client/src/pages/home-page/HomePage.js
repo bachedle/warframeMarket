@@ -49,7 +49,7 @@ function HomePage() {
         <div className="searchCategory">
           <Link to="/PlaceOrder" className="searchbutt">
             <img src={midenlacdit} className="img"></img>
-            search
+            Quick buy
           </Link>
         </div>
       </div>
@@ -59,10 +59,13 @@ function HomePage() {
             <Link to={`/${value.Name}`} className="Product-card-link">
               <div className="product-details">
                 <div className="img-name">
-                  <img className="product-image" src=''/*{getImageUrl(value.Name)}*/ />
+                  <img
+                    className="product-image"
+                    src="" /*{getImageUrl(value.Name)}*/
+                  />
                   <div className="product-name">{value.Name}</div>
                 </div>
-                
+
                 <div className="info">
                   {value.ModRank !== null && (
                     <div className="info-item">
@@ -91,11 +94,8 @@ function HomePage() {
                       </div>
                     </div>
                   )}
-                  <div className="info-item">
-                    Tax: {value.Tax}
-                  </div>
+                  <div className="info-item">Tax: {value.Tax}</div>
                 </div>
-
               </div>
             </Link>
           </div>

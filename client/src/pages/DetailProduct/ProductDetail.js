@@ -9,10 +9,13 @@ function ProductDetail() {
   const [product, setProduct] = useState([]);
   const [transactionSell, setTransactionSell] = useState([]);
   const [transactionBuy, setTransactionBuy] = useState([]);
+  const [popupUser, setPopupUser] = useState(null);
+  const [popupPrice, setPopupPrice] = useState(null);
   const textRef = useRef(null);
 
   // Pop-up state for success/failure of transaction
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopupBuy, setShowPopupBuy] = useState(false);
+  const [showPopupSell, setShowPopupSell] = useState(false);
 
   useEffect(() => {
     axios.get(`http://localhost:2001/products/${Name}`).then((response) => {
@@ -62,11 +65,17 @@ function ProductDetail() {
   }
 
   const closePopups = () => {
-    if (showPopup) {
+    if (showPopupSell) {
       if (textRef.current) {
         navigator.clipboard.writeText(textRef.current.innerText);
       }
-      setShowPopup(false);
+      setShowPopupSell(false);
+    }
+    if (showPopupBuy) {
+      if (textRef.current) {
+        navigator.clipboard.writeText(textRef.current.innerText);
+      }
+      setShowPopupBuy(false);
     }
   };
 
@@ -112,20 +121,24 @@ function ProductDetail() {
               <div
                 className="transaction-item"
                 key={transactionBuy.id}
-                onClick={() => setShowPopup(true)}
+                onClick={() => {
+                  setShowPopupBuy(true);
+                  setPopupUser(transactionBuy.User.Name);
+                  setPopupPrice(transactionBuy.Price);
+                }}
               >
                 <div>Buyer Name: {transactionBuy.User.Name}</div>
                 <div>Status: {transactionBuy.User.Status}</div>
                 <div>Reputation: {transactionBuy.User.Reputation}</div>
                 <div>Price: {transactionBuy.Price}p</div>
                 <div>Quantity: {transactionBuy.Quantity}</div>
-                {showPopup && (
+                {showPopupBuy && (
                   <div className="error-popup-overlay">
                     <div className="buy-popup">
-                      <p>Please message {transactionSell.User.Name} to buy</p>
+                      <p>Please message {transactionBuy.User.Name} to buy</p>
                       <p className="message" ref={textRef}>
-                        /w {transactionBuy.User.Name} Hi! I want to sell: "
-                        {product.Name}" for {transactionBuy.Price} platinum.
+                        /w {popupUser} Hi! I want to buy: "{product.Name}" for{" "}
+                        {popupPrice} platinum.
                       </p>
                       <p className="note">
                         This message will be copy to clipboard after close,
@@ -147,20 +160,24 @@ function ProductDetail() {
               <div
                 className="transaction-item"
                 key={transactionSell.id}
-                onClick={() => setShowPopup(true)}
+                onClick={() => {
+                  setShowPopupSell(true);
+                  setPopupUser(transactionSell.User.Name);
+                  setPopupPrice(transactionSell.Price);
+                }}
               >
                 <div>Seller Name: {transactionSell.User.Name}</div>
                 <div>Status: {transactionSell.User.Status}</div>
                 <div>Reputation: {transactionSell.User.Reputation}</div>
                 <div>Price: {transactionSell.Price}p</div>
                 <div>Quantity: {transactionSell.Quantity}</div>
-                {showPopup && (
+                {showPopupSell && (
                   <div className="error-popup-overlay">
                     <div className="sell-popup">
-                      <p>Please message {transactionSell.User.Name} to sell</p>
+                      <p>Please message {popupUser} to sell</p>
                       <p className="message" ref={textRef}>
-                        /w {transactionSell.User.Name} Hi! I want to sell: "
-                        {product.Name}" for {transactionSell.Price} platinum.
+                        /w {popupUser} Hi! I want to sell: "{product.Name}" for{" "}
+                        {popupPrice} platinum.
                       </p>
                       <p className="note">
                         This message will be copy to clipboard after close,

@@ -275,3 +275,12 @@
   font-size: 1.5rem;
   color: #666;
 }
+
+.user {
+  color: green;
+  cursor: default; /* Set default cursor */
+}
+
+.user:hover {
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
