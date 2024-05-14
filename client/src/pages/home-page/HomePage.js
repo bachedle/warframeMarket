@@ -54,46 +54,48 @@ function HomePage() {
         </div>
       </div>
       <div className="productList">
-      {listOfProducts.map((value, key) => (
-          <div className="product-card" key={key}>
+        {listOfProducts.map((value, key) => (
+          <div className="productCapsule" key={key}>
             <Link to={`/${value.Name}`} className="Product-card-link">
-              <div className="product-image-container">
-                {/* <img className="product-image" src={getImageUrl(value.Name)} alt="Product" /> */}
-              </div>
               <div className="product-details">
-                <div className="product-name">{value.Name}</div>
+                <div className="img-name">
+                  <img className="product-image" src=''/*{getImageUrl(value.Name)}*/ />
+                  <div className="product-name">{value.Name}</div>
+                </div>
+                
                 <div className="info">
-                  <div className="info-item">
-                    {/* <img className="nutrition-icon" src={caloriesIcon} alt="Calories" /> */}
-                    {value.ModRank !== null && (
+                  {value.ModRank !== null && (
+                    <div className="info-item">
+                      {/* <img className="nutrition-icon" src={caloriesIcon} alt="Calories" /> */}
                       <div className="modrank"> Mod Rank: {value.ModRank}</div>
-                    )}
-                  </div>
-                  <div className="info-item">
-                    {/* <img className="nutrition-icon" src={proteinIcon} alt="Protein" /> */}
-                    {value.Rarity && (
+                    </div>
+                  )}
+                  {value.Rarity && (
+                    <div className="info-item">
+                      {/* <img className="nutrition-icon" src={proteinIcon} alt="Protein" /> */}
                       <div className="rarity"> Rarity: {value.Rarity}</div>
-                    )}
-                  </div>
-                  <div className="info-item">
-                    {/* <img className="nutrition-icon" src={carbIcon} alt="Carb" /> */}
-                    {value.Duncat && (
+                    </div>
+                  )}
+                  {value.Duncat && (
+                    <div className="info-item">
+                      {/* <img className="nutrition-icon" src={carbIcon} alt="Carb" /> */}
                       <div className="duncat"> Duncat: {value.Duncat}</div>
-                    )}
-                  </div>
-                  <div className="info-item">
-                    {/* <img className="nutrition-icon" src={fatIcon} alt="Fat" /> */}
-                    {value.MasteryRank && (
+                    </div>
+                  )}
+                  {value.MasteryRank && (
+                    <div className="info-item">
+                      {/* <img className="nutrition-icon" src={fatIcon} alt="Fat" /> */}
                       <div className="masteryrank">
                         {" "}
                         Mastery Rank: {value.MasteryRank}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  )}
                   <div className="info-item">
                     Tax: {value.Tax}
                   </div>
                 </div>
+
               </div>
             </Link>
           </div>

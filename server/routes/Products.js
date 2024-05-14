@@ -75,7 +75,6 @@ router.get("/:name", async (req, res) => {
 
 // Request to create a new product
 router.post("/", async (req, res) => {
-  // <-- Changed router.products to router.post
   const product = req.body;
   await Products.create(product);
   res.json(product);

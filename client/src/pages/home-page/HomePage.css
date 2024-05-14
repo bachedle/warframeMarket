@@ -1,4 +1,4 @@
-.HomePage {
+.homepage {
     display: flex;
     flex-direction: column;
 } 
@@ -86,10 +86,43 @@ display: flex;
 }
 
 .productCapsule {
-    border:2px, black;
-    box-shadow: black, 0px 0px 10px -10px;
+    display: flex;
+    flex-direction: row;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px -10px black;
     background-color: lightgray;
-    margin-top:8px;
-    padding-left:10px;
-    padding-top: 10px;
-}
+    margin-top: 8px;
+    padding: 10px;
+    justify-content: space-between; /* Add this line to evenly space the items */
+    width: 1000px; /* Set a fixed width for the product capsule */
+    height: 100px; /* Set a fixed height for the product capsule */
+    border: 1px solid #ccc; /* Add border for better visualization */
+    margin: 10px; /* Add margin around each product capsule */
+  }
+  
+  .info {
+    display: grid;
+    grid-template-columns: repeat(3, 150px); /* Five columns with equal width */
+    grid-gap: 8px; /* Add gap between grid items */
+  }
+  
+  .info-item {
+    margin-right: 10px; /* Add margin to the right of each item */
+  }
+  
+  .info-item:last-child {
+    margin-right: 0; /* Remove margin from the last item to prevent extra space */
+  }
+
+  .img-name {
+    display: flex;
+    align-items: center; /* Center items vertically */
+  }
+  
+  .product-image {
+    width: 50px; /* Adjust the width as needed */
+    height: 50px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make the image rounded */
+    margin-right: 10px; /* Add spacing between the image and name */
+  }
+  
