@@ -31,15 +31,15 @@ module.exports = (sequelize, DataTypes) => {
   // Define association with the Products model to establish foreign key constraint
   Transactions.associate = (models) => {
     Transactions.belongsTo(models.Users, {
-      foreignKey: "UserID", 
-      targetKey: "ID", 
-      onDelete: "CASCADE", 
+      foreignKey: "UserID",
+      targetKey: "ID",
+      onDelete: "CASCADE",
     });
 
     Transactions.belongsTo(models.Products, {
-      foreignKey: "ProductID", 
-      targetKey: "ID", 
-      onDelete: "CASCADE", 
+      foreignKey: "ProductID",
+      targetKey: "ID",
+      onDelete: "CASCADE",
     });
   };
 
