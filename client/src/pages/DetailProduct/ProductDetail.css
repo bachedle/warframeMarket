@@ -152,3 +152,15 @@
     color: rgb(124, 124, 124); /* Set text color to black */
     margin-top: 50px; /* Add spacing of 40px on top */
 }
+
+.plat{
+    display: flex;
+    align-items: center; 
+}
+.product-detail-image {
+    position: absolute;
+    border-radius: 0%;
+    top: -200px;
+    z-index: 1;
+    
+  }

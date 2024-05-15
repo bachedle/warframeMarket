@@ -20,39 +20,46 @@ function WeaponPage() {
       <div className="weaponImage"></div>
       <div className="productList">
       {listOfProducts.map((value, key) => (
-            <div className="productCapsule" key={key}>
-              <Link to={`/${value.Name}`} className="Product-card-link">
-                <div className="product-details">
-                  <div className="img-name">
-                    <img className="product-image" src=''/*{getImageUrl(value.Name)}*/ />
-                    <div className="product-name">{value.Name}</div>
-                  </div>
-                  
-                  <div className="info">
-                    {value.Duncat && (
-                      <div className="info-item">
-                        {/* <img className="nutrition-icon" src={carbIcon} alt="Carb" /> */}
-                        <div className="duncat"> Duncat: {value.Duncat}</div>
-                      </div>
-                    )}
-                    {value.MasteryRank && (
-                      <div className="info-item">
-                        {/* <img className="nutrition-icon" src={fatIcon} alt="Fat" /> */}
-                        <div className="masteryrank">
-                          {" "}
-                          Mastery Rank: {value.MasteryRank}
-                        </div>
-                      </div>
-                    )}
-                    <div className="info-item">
-                      Tax: {value.Tax}
-                    </div>
-                  </div>
-
+          <div className="productCapsule" key={key}>
+            <Link to={`/${value.Name}`} className="Product-card-link">
+              <div className="product-details">
+                <div className="img-name">
+                  <img
+                    className="product-image"
+                    src={`/item/${value.Type==='Mod' ? 'item-mods' : value.Type==='Weapon' ? 'item-weapon' : 'item-warframe'}/${value.Name.replace(/\s+/g, '_')}.webp`} />
+                  <div className="product-name">{value.Name}</div>
                 </div>
-              </Link>
-            </div>
-          ))}
+                <div className="info">
+                  {value.ModRank !== null && (
+                    <div className="info-item">
+                      <div className="modrank"> Mod Rank: {value.ModRank}</div>
+                    </div>
+                  )}
+                  {value.Rarity && (
+                    <div className="info-item">
+                      <div className="rarity"> Rarity: {value.Rarity}</div>
+                    </div>
+                  )}
+                  {value.MasteryRank && (
+                    <div className="info-item">
+                      <div className="masteryrank">
+                        {" "}
+                        Mastery Rank: {value.MasteryRank}
+                      </div>
+                    </div>
+                  )}
+                  {value.Duncat && (
+                    <div className="info-item-ducat">
+                      <img className="ducat" src={`/item/icon/ducat.webp`}/>
+                      <div className="ducat" >{value.Duncat}</div>
+                    </div>
+                  )}
+                  <div className="info-item">Trading Tax: <img className="ducat" src={`/item/icon/credits.webp`}/> {value.Tax}</div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
       </div>
     </div>
   );
