@@ -102,12 +102,34 @@ display: flex;
   
   .info {
     display: grid;
-    grid-template-columns: repeat(3, 150px); /* Five columns with equal width */
-    grid-gap: 8px; /* Add gap between grid items */
+    grid-template-columns: repeat(3, 190px); 
+    grid-gap: 8px; 
   }
   
+  /* Fill the grid from the end */
+.info > *:nth-last-child(1) {
+  grid-column-start: -1;
+}
+
+.info > *:nth-last-child(2) {
+  grid-column-start: -2;
+}
+
+.info > *:nth-last-child(3) {
+  grid-column-start: -3;
+}
+
   .info-item {
+    display: flex;
+    align-items: center;
     margin-right: 10px; /* Add margin to the right of each item */
+  }
+
+  .info-item-ducat {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; /* Add margin to the right of each item */
+    grid-gap: 8px;
   }
   
   .info-item:last-child {
@@ -117,6 +139,7 @@ display: flex;
   .img-name {
     display: flex;
     align-items: center; /* Center items vertically */
+    margin-bottom: 20px;
   }
   
   .product-image {
@@ -124,5 +147,12 @@ display: flex;
     height: 50px; /* Adjust the height as needed */
     border-radius: 50%; /* Make the image rounded */
     margin-right: 10px; /* Add spacing between the image and name */
+  }
+  .ducat {
+    display: flex;
+    align-items: center;
+    width: 25px; /* Adjust the width as needed */
+    height: 25px; /* Adjust the height as needed */
+    border-radius: 50%; /* Make the image rounded */
   }
   
