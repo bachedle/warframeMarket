@@ -150,7 +150,7 @@ function ProductDetail() {
               </div>
             ))
           ) : (
-            <div>No buy transactions found</div>
+            <div className="notify-no-transaction">No buy transactions found</div>
           )}
         </div>
         <div className="productList">
@@ -189,7 +189,7 @@ function ProductDetail() {
               </div>
             ))
           ) : (
-            <div>No sell transactions found</div>
+            <div className="notify-no-transaction">No sell transactions found</div>
           )}
         </div>
       </div>

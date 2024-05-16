@@ -17,7 +17,9 @@ import "../create-transaction/FloatingButton.css";
 function NavBar() {
   // // user state
   const [user, setUser] = useState(null);
-
+// pop up for online/offline status
+const [showUserStatusSuccess, setShowUserStatusSuccess] = useState(false);
+const [showUserStatusFailed, setShowUserStatusFailed] = useState(false);
   // show login form and register form
   const [showLoginForm, setShowLoginForm] = useState(false);
   const [showRegisterForm, setShowRegisterForm] = useState(false);
@@ -124,6 +126,8 @@ function NavBar() {
   const closePopups = () => {
     setShowSuccessPopup(false);
     setShowErrorPopup(false);
+    setShowUserStatusFailed(false);
+    setShowUserStatusSuccess(false);
   };
 
   //Floating Button handlers
@@ -221,11 +225,11 @@ function NavBar() {
         .put(`http://localhost:2001/auth/${user.ID}/${status}`)
         .then(() => {
           console.log("User status updated successfully");
-          setShowSuccessPopup(true);
+          setShowUserStatusSuccess(true);
         })
         .catch((error) => {
           console.error("Error updating user status:", error);
-          setShowErrorPopup(true);
+          setShowUserStatusFailed(true);
         });
       // Toggle between green and red colors
       setColor(status === "Offline" ? "red" : "green");
@@ -252,9 +256,9 @@ function NavBar() {
               {/* <Link to="/CreatePost">create post</Link> */}
             </div>
             <div className="navButton">
-              <Link to="/Warframe">Warframe</Link>
-              <Link to="/Weapons">Weapons</Link>
-              <Link to="/Mod">Mods</Link>
+              <Link to="/Warframe" style={{color:'darkslategray'}}>Warframe</Link>
+              <Link to="/Weapons" style={{color:'darkslategray'}}>Weapons</Link>
+              <Link to="/Mod" style={{color:'darkslategray  '}}>Mods</Link>
               <div
                 className="user"
                 style={{ color: color }}
@@ -449,11 +453,11 @@ function NavBar() {
             </div>
           </div>
         )}
-        {showErrorPopup && (
+        
+        {showUserStatusFailed && (
           <div className="error-popup-overlay" onClick={closePopups}>
             <div className="error-popup">
-              <p>transaction failed</p>
-              <p>Please check your information again.</p>
+              <p>Offline </p>
             </div>
           </div>
         )}
