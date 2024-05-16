@@ -1,7 +1,7 @@
 .warframeImage {
     background-color: crimson;
-    background-image: url('../../assets/warframeimage.jpg');
-    background-position: center;
+    background-image: url('../../assets/protea.png');
+    background-position: top;
     background-size:100%;
     filter: brightness(100%);
     background-repeat: no-repeat;

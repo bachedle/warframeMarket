@@ -101,7 +101,7 @@ function ProductDetail() {
         </div>
       </div>
       <div className="transaction-lists">
-        <div className="productList">
+        <div className="transaction">
           <h3 className="buy">BUY</h3>
           {transactionBuy.length > 0 ? (
             transactionBuy.map((transactionBuy) => (
@@ -140,7 +140,7 @@ function ProductDetail() {
             <div className="notify-no-transaction">No buy transactions found</div>
           )}
         </div>
-        <div className="productList">
+        <div className="transaction">
           <h3 className="sell">SELL</h3>
           {transactionSell.length > 0 ? (
             transactionSell.map((transactionSell) => (
@@ -156,7 +156,7 @@ function ProductDetail() {
                 <div>Seller Name: {transactionSell.User.Name}</div>
                 <div>Status: {transactionSell.User.Status}</div>
                 <div>Reputation: {transactionSell.User.Reputation}</div>
-                <div>Price: {transactionSell.Price}p</div>
+                <div className="plat">Price: {transactionSell.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
                 <div>Quantity: {transactionSell.Quantity}</div>
                 {showPopupSell && (
                   <div className="error-popup-overlay">

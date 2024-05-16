@@ -1,20 +1,45 @@
 .orderContainer {
     background-color: crimson;
-    background-image: url('../../assets/barokiteer.png');
+    background-image: url('../../assets/kiteer_comingsoon.jpg');
     background-position: center;
-    background-size:90%;
-    filter: brightness(100%);
+    background-size: cover;
     background-repeat: no-repeat;
-    height: 800px;
-    margin: 20px;
+    margin-left: -10px;
+    width: 100% -10px;
+    height: 100vh; /* Use viewport height to make it full screen */
     display: flex;
-    /* padding: 200px 0; */
     justify-content: center;
-    text-align:center;
-    /* gap: 200px; */
-    transform: translate3d(3.2px,-8px,0px);
+    text-align: center;
+    transform: translate3d(3.2px, -8px, 0px);
     transform-style: preserve-3d;
     backface-visibility: hidden;
     position: relative;
+}
+
+.kiteerText {
+    /* color:rgb(11, 13,  */
+    font-family:fantasy;
+    text-shadow: 0 10px 20px -10px wheat;
+    font-size: 150px;
+    font-weight: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 200px;
+    color: black;
+    /* filter: saturate(100%); */
+  -webkit-text-fill-color: rgba(0, 0, 0, 0); /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+.countdown {
+  font-family: monospace;
+  font-size: 72px;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  margin-top: 50px;
+  /* animation: pulse 1s infinite; */
 }
 

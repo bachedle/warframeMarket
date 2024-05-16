@@ -5,7 +5,7 @@ function Footer() {
   return (
     <div className="footerContainer">
       <div className='footer'>
-        <p>footer</p>
+        <p>-WARFRAME TRADING MARKET-</p>
       </div>
       
     </div>

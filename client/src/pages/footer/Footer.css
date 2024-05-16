@@ -1,12 +1,18 @@
 .footerContainer {
     position:static;
-    height: 100px;
+    height: 150px;
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: rgb(4, 12, 19);
+    background-color: rgb(23, 41, 41);
     color: white;
     text-align: center;
     border: 1px, bkack;
 
+}
+
+.footer {
+    padding-top: 50px;
+    font-family: fantasy;
+    font-size: 50px;
 }

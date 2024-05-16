@@ -8,7 +8,7 @@ import "./HomePage.css";
 import warframeImg from "../../assets/gauss.png";
 import weaponImg from "../../assets/AcceltraPrime.webp";
 import modImg from "../../assets/mod.webp";
-import midenlacdit from "../../assets/platinum.webp";
+import midenlacdit from "../../assets/quickbuy.webp";
 
 function HomePage() {
   // let { id } = useParams();
