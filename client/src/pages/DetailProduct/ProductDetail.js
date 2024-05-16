@@ -90,19 +90,17 @@ function ProductDetail() {
             <div className="info-item">Tax: {product.Tax}</div>
           </div>
         </div>
-        <div className="wiki-link">
-          <a
-            href="https://www.facebook.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Wiki
-          </a>
-        </div>
       </div>
       <div className="transaction-lists">
         <div className="transaction">
           <h3 className="buy">BUY</h3>
+          <div className="transaction-item-header">
+            <div>Buyer Name</div>
+            <div>Status</div>
+            <div>Reputation</div>
+            <div>Price</div>
+            <div>Quantity</div>
+          </div>
           {transactionBuy.length > 0 ? (
             transactionBuy.map((transactionBuy) => (
               <div
@@ -114,11 +112,11 @@ function ProductDetail() {
                   setPopupPrice(transactionBuy.Price);
                 }}
               >
-                <div>Buyer Name: {transactionBuy.User.Name}</div>
-                <div>Status: {transactionBuy.User.Status}</div>
-                <div>Reputation: {transactionBuy.User.Reputation}</div>
-                <div className="plat">Price: {transactionBuy.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
-                <div>Quantity: {transactionBuy.Quantity}</div>
+                <div>{transactionBuy.User.Name}</div>
+                <div>{transactionBuy.User.Status}</div>
+                <div>{transactionBuy.User.Reputation}</div>
+                <div className="plat">{transactionBuy.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
+                <div>{transactionBuy.Quantity}</div>
                 {showPopupBuy && (
                   <div className="error-popup-overlay">
                     <div className="buy-popup">
@@ -142,6 +140,13 @@ function ProductDetail() {
         </div>
         <div className="transaction">
           <h3 className="sell">SELL</h3>
+          <div className="transaction-item-header">
+            <div>Buyer Name</div>
+            <div>Status</div>
+            <div>Reputation</div>
+            <div>Price</div>
+            <div>Quantity</div>
+          </div>
           {transactionSell.length > 0 ? (
             transactionSell.map((transactionSell) => (
               <div
@@ -153,11 +158,11 @@ function ProductDetail() {
                   setPopupPrice(transactionSell.Price);
                 }}
               >
-                <div>Seller Name: {transactionSell.User.Name}</div>
-                <div>Status: {transactionSell.User.Status}</div>
-                <div>Reputation: {transactionSell.User.Reputation}</div>
-                <div className="plat">Price: {transactionSell.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
-                <div>Quantity: {transactionSell.Quantity}</div>
+                <div>{transactionSell.User.Name}</div>
+                <div>{transactionSell.User.Status}</div>
+                <div>{transactionSell.User.Reputation}</div>
+                <div className="plat">{transactionSell.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
+                <div>{transactionSell.Quantity}</div>
                 {showPopupSell && (
                   <div className="error-popup-overlay">
                     <div className="sell-popup">
