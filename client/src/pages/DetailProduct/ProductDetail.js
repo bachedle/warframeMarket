@@ -42,24 +42,7 @@ function ProductDetail() {
         });
     }
   }, [product.ID]);
-  // useEffect(() => {
-  //   if (product.ID) {
-  //     axios
-  //       .get(`http://localhost:2001/transactions/Sell/${product.ID}`)
-  //       .then((response) => {
-  //         setTransaction(response.data);
-  //       })
-  //       .catch((error) => {
-  //         if (error.response && error.response.status === 404) {
-  //           // Product not found, navigate to 404 page
-  //           history.push("/404");
-  //         } else {
-  //           // Handle other errors here
-  //           console.error("Error fetching transaction:", error);
-  //         }
-  //       });
-  //   }
-  // }, [product.ID, history]);
+  
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -84,7 +67,11 @@ function ProductDetail() {
       <div className="product-detail">
         <div className="header-name">{product.Name}</div>
         <div className="info-container">
-          <img src="" alt="Product Image" />
+          <img 
+            className="product-detail-image"
+            src={`/item/${product.Type==='Mod' ? 'item-mods' : product.Type==='Weapon' ? 'item-weapon' : 'item-warframe'}/${(product.Name || '').replace(/\s+/g, '_')}.webp`} 
+            alt="Product Image" 
+          />
           <div className="info-items">
             {product.ModRank !== null && (
               <div className="info-item">Mod Rank: {product.ModRank}</div>
@@ -130,7 +117,7 @@ function ProductDetail() {
                 <div>Buyer Name: {transactionBuy.User.Name}</div>
                 <div>Status: {transactionBuy.User.Status}</div>
                 <div>Reputation: {transactionBuy.User.Reputation}</div>
-                <div>Price: {transactionBuy.Price}p</div>
+                <div className="plat">Price: {transactionBuy.Price}<img className="ducat" src={`/item/icon/platinum.webp`}/></div>
                 <div>Quantity: {transactionBuy.Quantity}</div>
                 {showPopupBuy && (
                   <div className="error-popup-overlay">

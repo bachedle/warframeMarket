@@ -160,7 +160,14 @@
     margin-top: 50px; /* Add spacing of 40px on top */
 }
 
-.notify-no-transaction {
-    font-size: 30px;
-
+.plat{
+    display: flex;
+    align-items: center; 
 }
+.product-detail-image {
+    position: absolute;
+    border-radius: 0%;
+    top: -200px;
+    z-index: 1;
+    
+  }
