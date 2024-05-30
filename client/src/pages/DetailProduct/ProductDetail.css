@@ -52,7 +52,7 @@
     /* background-color: blue; */
     padding-top: 50px;
     gap:30px;
-    width: 1000px;
+    width: 800px;
 }
 
 .buy {
@@ -113,7 +113,7 @@
     gap: 10px; 
     box-shadow: 0 10px 20px -10px black;
     background-color: white;
-    width: 800px; /* Increase the width */
+    width: 700px; /* Increase the width */
     margin-top: 5px;
     padding: 10px;
     justify-items: start;
@@ -129,8 +129,8 @@
     grid-template-rows: auto; /* Adjusted for grid rows */
     gap: 10px; 
     /* box-shadow: 0 10px 20px -10px black; */
-    background-color: rgb(167, 167, 167);
-    width: 800px; /* Increase the width */
+    background-color:rgb(42, 42, 42);
+    width: 700px; /* Increase the width */
     margin-top: 5px;
     padding: 10px;
     justify-items: start;
@@ -138,6 +138,7 @@
     cursor:pointer;
     font-weight: bold;
     font-size: 20px;
+    color:white;
 }
 
 

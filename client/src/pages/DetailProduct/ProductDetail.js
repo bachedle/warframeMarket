@@ -95,7 +95,7 @@ function ProductDetail() {
         <div className="transaction">
           <h3 className="buy">BUY</h3>
           <div className="transaction-item-header">
-            <div>Buyer Name</div>
+            <div>Buyer</div>
             <div>Status</div>
             <div>Reputation</div>
             <div>Price</div>
@@ -141,7 +141,7 @@ function ProductDetail() {
         <div className="transaction">
           <h3 className="sell">SELL</h3>
           <div className="transaction-item-header">
-            <div>Buyer Name</div>
+            <div>Seller</div>
             <div>Status</div>
             <div>Reputation</div>
             <div>Price</div>

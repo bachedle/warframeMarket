@@ -1,6 +1,8 @@
 .warframeImage {
-    background-color: crimson;
+    background-color: white;
     background-image: url('../../assets/protea.png');
+    box-shadow: 0 10px 20px -10px black;
+
     background-position: top;
     background-size:100%;
     filter: brightness(100%);
@@ -21,8 +23,10 @@
 }
 
 .weaponImage {
-    background-color: crimson;
+    background-color: white;
     background-image: url('../../assets/weaponimage.jpg');
+    box-shadow: 0 10px 20px -10px black;
+
     background-position: center;
     background-size:100%;
     filter: brightness(100%);
@@ -43,8 +47,10 @@
 }
 
 .modImage {
-    background-color: crimson;
+    background-color: white;
     background-image: url('../../assets/modimage.png');
+    box-shadow: 0 10px 20px -10px black;
+
     background-position: top;
     background-size:100%;
     filter: brightness(100%);
