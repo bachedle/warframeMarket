@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
@@ -81,8 +80,42 @@ function ProductDetail() {
   const handleConfirm = (values) => {
     // Handle the confirm button click event
     console.log("Confirm button clicked");
+    // values=JSON.stringify(values);
     console.log("Form values:", values);
-    
+
+    axios.put('http://localhost:2001/transactions/update', values)
+      .then(() => {
+        // Fetch updated transaction data and update states
+        axios.get(`http://localhost:2001/transactions/Sell/${product.ID}`)
+          .then((response) => {
+            setTransactionSell(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching sell transactions:", error);
+          });
+  
+        axios.get(`http://localhost:2001/transactions/Buy/${product.ID}`)
+          .then((response) => {
+            setTransactionBuy(response.data);
+          })
+          .catch((error) => {
+            console.error("Error fetching buy transactions:", error);
+          });
+      })
+      .catch((error) => {
+        console.error("Error updating transaction:", error);
+      });
+  };
+  
+  const deleteTransaction = (transactionId) => {
+    axios.delete(`http://localhost:2001/transactions/delete/${transactionId}`)
+      .then(() => {
+        setTransactionSell(prev => prev.filter(txn => txn.id !== transactionId));
+        setTransactionBuy(prev => prev.filter(txn => txn.id !== transactionId));
+      })
+      .catch((error) => {
+        console.error("Error deleting transaction:", error);
+      });
   };
 
   // end of code
@@ -191,7 +224,7 @@ function ProductDetail() {
                 //   setPopupPrice(transactionBuy.Price);
                 // }}
               >
-                <div className ="edit-button">x</div>
+                <div className ="edit-button" onClick={()=>{console.log(transactionBuy.id); deleteTransaction(transactionBuy.id)}}>x</div>
                 <div>{transactionBuy.User.Name}</div>
                 <div>{transactionBuy.User.Status}</div>
                 <div>{transactionBuy.User.Reputation}</div>
@@ -212,7 +245,7 @@ function ProductDetail() {
                     </div>
                   </div>
                 )}
-                <div className='edit-button' onClick={handleBuyClick}> 
+                <div className='edit-button' onClick={(event)=>{localStorage.setItem('Edited ID', transactionBuy.id);handleBuyClick(event)}}> 
                   <span className="sus">----</span>
                   <span> edit</span>
                 </div>
@@ -238,13 +271,13 @@ function ProductDetail() {
               <div
                 className="transaction-item"
                 key={transactionSell.id}
-                onClick={() => {
-                  setShowPopupSell(true);
-                  setPopupUser(transactionSell.User.Name);
-                  setPopupPrice(transactionSell.Price);
-                }}
+                // onClick={() => {
+                //   setShowPopupSell(true);
+                //   setPopupUser(transactionSell.User.Name);
+                //   setPopupPrice(transactionSell.Price);
+                // }}
               >
-                <div className='edit-button'> x</div>
+                <div className='edit-button' onClick={()=>{console.log(transactionSell.id); deleteTransaction(transactionSell.id)}}> x</div>
                 <div>{transactionSell.User.Name}</div>
                 <div>{transactionSell.User.Status}</div>
                 <div>{transactionSell.User.Reputation}</div>
@@ -265,7 +298,7 @@ function ProductDetail() {
                     </div>
                   </div>
                 )}
-                <div className='edit-button' onClick={handleSellClick}> 
+                <div className='edit-button' onClick={(event)=>{localStorage.setItem('Edited ID', transactionSell.id);handleSellClick(event)}}> 
                   <span className="sus">----</span>
                   <span > edit</span>
                 </div>
@@ -280,7 +313,7 @@ function ProductDetail() {
           <div className="modalContent">
             <div className="modalHeader">
               <div className="headerContent">
-                <h2>{sell ? "Selling Something?" : "Buying Something?"}</h2>
+                <h2>{sell ? "Selling Edit?" : "Buying Edit?"}</h2>
                 {/* <button className="close-btn" onClick={handleClose}>
                   X
                 </button> */}
@@ -291,7 +324,7 @@ function ProductDetail() {
               <div className="bodyContent">
                 <Formik
                   initialValues={{
-                    itemName: "",
+                    id: localStorage.getItem('Edited ID'),
                     price: "",
                     quantity: "",
                   }}
@@ -299,12 +332,6 @@ function ProductDetail() {
                 >
                   <Form>
                     <div className="itemContainer">
-                      <label htmlFor="itemName">Item Name</label>
-                      <Field as="select" id="itemName" name="itemName">
-                        {listOfProductNames.map((productName, index) => (
-                          <option key={index} value={productName}>{productName}</option>
-                        ))}
-                      </Field>
                       <ErrorMessage name="itemName" component="div" />
                     </div>
                     <div className="misContainer">

@@ -74,6 +74,42 @@ router.get("/Buy", async (req, res) => {
     }
 });
 
+router.delete("/delete/:id", async (req, res) => {
+  try {
+    const { id } = req.params; // Correctly extract the id parameter
+    const transaction = await Transactions.findByPk(id); // Use findByPk method
+
+    if (!transaction) {
+      return res.status(404).json({ error: "Transaction not found" });
+    }
+
+    await transaction.destroy();
+    res.status(200).json("success");
+  } catch (error) {
+    console.error("Error deleting transaction:", error);
+    res.status(500).json({ error: "An error occurred while deleting the transaction" });
+  }
+});
+
+router.put("/update", async (req, res) => {
+  try {
+    const { id, price, quantity } = req.body; // Correctly extract the quantity parameter
+    const transaction = await Transactions.findByPk(id); // Use findByPk method
+    
+    if (!transaction) {
+      return res.status(404).json({ error: "Transaction not found" });
+    }
+    transaction.Price = price;
+    transaction.Quantity = quantity;
+    await transaction.save();
+    res.status(200).json("success");
+  } catch (error) {
+    console.error("Error updating transaction:", error);
+    res.status(500).json({ error: "An error occurred while updating the transaction" });
+  }
+});
+
+
 router.post("/", async (req, res) => {
   try {
     const { ProductID, UserID, Price, Type, Quantity } = req.body;
