@@ -1,4 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ProductDetail.css";
@@ -13,6 +15,79 @@ function ProductDetail() {
   const [popupPrice, setPopupPrice] = useState(null);
   const textRef = useRef(null);
 
+  // method xu ly cai form
+  const [sell, setSell] = useState(false);
+  const [buy, setBuy] = useState(false);
+  const [listOfProductNames, setListOfProductNames] = useState([]);
+
+  //clickoutside handler
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      const modalContent = document.querySelector(".modalContent");
+      const floatingButton = document.querySelector(".floating-button");
+
+      if (
+        modalContent &&
+        !modalContent.contains(event.target) &&
+        !floatingButton.contains(event.target)
+      ) {
+        setSell(false);
+        setBuy(false);
+      }
+    };
+
+    window.addEventListener("click", handleClickOutside);
+
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  useEffect(() => {
+    axios.get(`http://localhost:2001/products`)
+      .then((response) => {
+        const productNames = response.data.map(product => product.Name);
+        setListOfProductNames(productNames);
+      })
+      .catch((error) => {
+        console.error("Error fetching product names:", error);
+      });
+  }, []);
+
+  const setSellPopup = () => {
+    setSell(true);
+    setBuy(false); // Close the buy popup if it's open
+  };
+
+  const setBuyPopup = () => {
+    setBuy(true);
+    setSell(false); // Close the sell popup if it's open
+  };
+
+  // const handleClose = () => {
+  //   setSell(false);
+  //   setBuy(false);
+  // };
+  const handleSellClick = (event) => {
+    event.stopPropagation();
+    setSellPopup();
+  };
+
+  const handleBuyClick = (event) => {
+    event.stopPropagation();
+    setBuyPopup();
+  };
+
+  const handleConfirm = (values) => {
+    // Handle the confirm button click event
+    console.log("Confirm button clicked");
+    console.log("Form values:", values);
+    
+  };
+
+  // end of code
+
+  //method xu ly cai product detail
   // Pop-up state for success/failure of transaction
   const [showPopupBuy, setShowPopupBuy] = useState(false);
   const [showPopupSell, setShowPopupSell] = useState(false);
@@ -95,23 +170,28 @@ function ProductDetail() {
         <div className="transaction">
           <h3 className="buy">BUY</h3>
           <div className="transaction-item-header">
+            <div className="sus">-----</div>
             <div>Buyer</div>
             <div>Status</div>
             <div>Reputation</div>
-            <div>Price</div>
+            <div>Price</div>    
             <div>Quantity</div>
+            <div className="sus">---</div>
+
           </div>
           {transactionBuy.length > 0 ? (
             transactionBuy.map((transactionBuy) => (
+              
               <div
                 className="transaction-item"
                 key={transactionBuy.id}
-                onClick={() => {
-                  setShowPopupBuy(true);
-                  setPopupUser(transactionBuy.User.Name);
-                  setPopupPrice(transactionBuy.Price);
-                }}
+                // onClick={() => {
+                //   setShowPopupBuy(true);
+                //   setPopupUser(transactionBuy.User.Name);
+                //   setPopupPrice(transactionBuy.Price);
+                // }}
               >
+                <div className ="edit-button">x</div>
                 <div>{transactionBuy.User.Name}</div>
                 <div>{transactionBuy.User.Status}</div>
                 <div>{transactionBuy.User.Reputation}</div>
@@ -132,6 +212,10 @@ function ProductDetail() {
                     </div>
                   </div>
                 )}
+                <div className='edit-button' onClick={handleBuyClick}> 
+                  <span className="sus">----</span>
+                  <span> edit</span>
+                </div>
               </div>
             ))
           ) : (
@@ -141,6 +225,8 @@ function ProductDetail() {
         <div className="transaction">
           <h3 className="sell">SELL</h3>
           <div className="transaction-item-header">
+          <div className="sus">---</div>
+
             <div>Seller</div>
             <div>Status</div>
             <div>Reputation</div>
@@ -158,6 +244,7 @@ function ProductDetail() {
                   setPopupPrice(transactionSell.Price);
                 }}
               >
+                <div className='edit-button'> x</div>
                 <div>{transactionSell.User.Name}</div>
                 <div>{transactionSell.User.Status}</div>
                 <div>{transactionSell.User.Reputation}</div>
@@ -178,6 +265,10 @@ function ProductDetail() {
                     </div>
                   </div>
                 )}
+                <div className='edit-button' onClick={handleSellClick}> 
+                  <span className="sus">----</span>
+                  <span > edit</span>
+                </div>
               </div>
             ))
           ) : (
@@ -185,6 +276,66 @@ function ProductDetail() {
           )}
         </div>
       </div>
+      {(sell || buy) && (
+          <div className="modalContent">
+            <div className="modalHeader">
+              <div className="headerContent">
+                <h2>{sell ? "Selling Something?" : "Buying Something?"}</h2>
+                {/* <button className="close-btn" onClick={handleClose}>
+                  X
+                </button> */}
+              </div>
+            </div>
+
+            <div className="modalBody">
+              <div className="bodyContent">
+                <Formik
+                  initialValues={{
+                    itemName: "",
+                    price: "",
+                    quantity: "",
+                  }}
+                  onSubmit={handleConfirm}
+                >
+                  <Form>
+                    <div className="itemContainer">
+                      <label htmlFor="itemName">Item Name</label>
+                      <Field as="select" id="itemName" name="itemName">
+                        {listOfProductNames.map((productName, index) => (
+                          <option key={index} value={productName}>{productName}</option>
+                        ))}
+                      </Field>
+                      <ErrorMessage name="itemName" component="div" />
+                    </div>
+                    <div className="misContainer">
+                      <div className="rowCompact">
+                        <div className="price">
+                          <label htmlFor="price">Price per unit</label>
+                          <Field type="number" id="price" name="price" />
+                          <ErrorMessage name="price" component="div" />
+                        </div>
+                        <div className="quantity">
+                          <label htmlFor="quantity">Quantity</label>
+                          <Field type="number" id="quantity" name="quantity" />
+                          <ErrorMessage name="quantity" component="div" />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="modalAction">
+                      <div className="buttonHolder">
+                        <button className="button" type="submit">
+                          <div>
+                            <span>Confirm</span>
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                  </Form>
+                </Formik>
+              </div>
+            </div>
+          </div>
+        )}
     </div>
   );
 }
